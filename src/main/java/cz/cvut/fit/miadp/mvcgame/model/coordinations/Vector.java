@@ -4,9 +4,6 @@ public class Vector {
     private int dX = 0;
     private int dY = 0;
 
-    public Vector() {
-    }
-
     public Vector(int dX, int dY) {
         this.dX = dX;
         this.dY = dY;

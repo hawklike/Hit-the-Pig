@@ -8,4 +8,6 @@ public class MvcGameConfig {
     public static final String CANNON_IMG_RESOURCE = "images/cannon.png";
 
     public static final String MISSILE_IMG_RESOURCE = "images/missile.png";
+    public static final int MISSILE_MOVE_STEP = 3;
+    public static final int MISSILE_TIME_DELAY = 100;
 }

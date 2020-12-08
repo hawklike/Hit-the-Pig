@@ -1,7 +1,10 @@
 package cz.cvut.fit.miadp.mvcgame.model;
 
+import cz.cvut.fit.miadp.mvcgame.Log;
+import cz.cvut.fit.miadp.mvcgame.MvcGame;
 import cz.cvut.fit.miadp.mvcgame.abstract_factory.AbstractGameObjectFactory;
 import cz.cvut.fit.miadp.mvcgame.abstract_factory.BasicGameObjectFactory;
+import cz.cvut.fit.miadp.mvcgame.config.MvcGameConfig;
 import cz.cvut.fit.miadp.mvcgame.model.coordinations.Direction;
 import cz.cvut.fit.miadp.mvcgame.model.object.base.AbstractCannon;
 import cz.cvut.fit.miadp.mvcgame.model.object.base.AbstractMissile;
@@ -21,14 +24,14 @@ public class GameModel implements Observable {
     private List<Observer> observers;
     private AbstractGameObjectFactory objectFactory;
 
-    private Long time;
+    private Long time = 0L;
+    private Long shotTime = 0L;
 
     public GameModel() {
         missiles = new ArrayList<>();
         objectFactory = new BasicGameObjectFactory();
         cannon = objectFactory.createCannon();
         observers = new ArrayList<>();
-        time = 0L;
     }
 
     public void moveCannon(Direction direction) {
@@ -47,8 +50,11 @@ public class GameModel implements Observable {
     }
 
     public void createMissile() {
-        missiles.add(cannon.shoot());
-        notifyObservers();
+        if(time - MvcGameConfig.MISSILE_TIME_DELAY > shotTime) {
+            shotTime = time;
+            missiles.add(cannon.shoot());
+            notifyObservers();
+        }
     }
 
     public AbstractCannon getCannon() {
@@ -61,8 +67,20 @@ public class GameModel implements Observable {
 
     public void update() {
         time++;
-
+        moveMissiles();
         //move enemies and other stuff
+    }
+
+    private void moveMissiles() {
+        missiles.forEach(missile -> missile.move(time));
+        removeMissiles();
+        notifyObservers();
+    }
+
+    private void removeMissiles() {
+        missiles.removeIf(missile -> missile.getPosition().getX() > MvcGame.getWindowWidth() ||
+                missile.getPosition().getY() > MvcGame.getWindowHeight());
+        Log.print("Active missiles: " + missiles.size());
     }
 
     @Override
