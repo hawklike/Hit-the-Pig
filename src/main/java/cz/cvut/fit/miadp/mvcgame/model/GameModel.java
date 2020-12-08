@@ -1,32 +1,36 @@
 package cz.cvut.fit.miadp.mvcgame.model;
 
-import cz.cvut.fit.miadp.mvcgame.config.MvcGameConfig;
+import cz.cvut.fit.miadp.mvcgame.model.object.Cannon;
+
+import static cz.cvut.fit.miadp.mvcgame.model.Direction.DOWN;
+import static cz.cvut.fit.miadp.mvcgame.model.Direction.UP;
 
 public class GameModel {
-    private Position logoPos;
+    private Cannon cannon;
 
     public GameModel() {
-        logoPos = new Position((MvcGameConfig.MAX_X / 2) - 128, (MvcGameConfig.MAX_Y / 2) - 128);
+        cannon = new Cannon();
     }
 
-    public Position getLogoPos() {
-        return logoPos;
+    public Position getCannonPosition() {
+        return cannon.getPosition();
     }
 
-    public void moveLogo(Direction direction) {
+    public void moveCannon(Direction direction) {
         switch(direction) {
             case UP:
-                logoPos.setY(logoPos.getY() - 10);
+                cannon.move(UP);
                 break;
             case DOWN:
-                logoPos.setY(logoPos.getY() + 10);
+                cannon.move(DOWN);
                 break;
             case LEFT:
-                logoPos.setX(logoPos.getX() - 10);
-                break;
             case RIGHT:
-                logoPos.setX(logoPos.getX() + 10);
                 break;
         }
+    }
+
+    public Cannon getCannon() {
+        return cannon;
     }
 }

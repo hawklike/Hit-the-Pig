@@ -18,16 +18,16 @@ public class GameController {
         for(String code : pressedKeysCodes) {
             switch(code) {
                 case "UP":
-                    model.moveLogo(UP);
+                    model.moveCannon(UP);
                     break;
                 case "DOWN":
-                    model.moveLogo(DOWN);
+                    model.moveCannon(DOWN);
                     break;
                 case "LEFT":
-                    model.moveLogo(LEFT);
+                    model.moveCannon(LEFT);
                     break;
                 case "RIGHT":
-                    model.moveLogo(RIGHT);
+                    model.moveCannon(RIGHT);
                     break;
             }
         }

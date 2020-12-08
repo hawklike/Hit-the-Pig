@@ -1,31 +1,35 @@
 package cz.cvut.fit.miadp.mvcgame.model;
 
 public class Position {
-    private int dimX = 0;
-    private int dimY = 0;
+    private int posX = 0;
+    private int posY = 0;
 
     public Position() {
     }
 
     public Position(int posX, int posY) {
-        this.dimX = posX;
-        this.dimY = posY;
+        this.posX = posX;
+        this.posY = posY;
     }
 
     public int getX() {
-        return dimX;
+        return posX;
     }
 
     public int getY() {
-        return dimY;
+        return posY;
     }
 
     public void setY(int y) {
-        this.dimY = y;
+        this.posY = y;
     }
 
     public void setX(int x) {
-        this.dimX = x;
+        this.posX = x;
     }
 
+    public void add(Vector v) {
+        posX += v.getDX();
+        posY += v.getDY();
+    }
 }
