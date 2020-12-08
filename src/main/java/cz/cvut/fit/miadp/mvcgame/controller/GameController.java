@@ -4,7 +4,8 @@ import cz.cvut.fit.miadp.mvcgame.model.GameModel;
 
 import java.util.List;
 
-import static cz.cvut.fit.miadp.mvcgame.model.Direction.*;
+import static cz.cvut.fit.miadp.mvcgame.model.Direction.DOWN;
+import static cz.cvut.fit.miadp.mvcgame.model.Direction.UP;
 
 public class GameController {
 
@@ -22,12 +23,6 @@ public class GameController {
                     break;
                 case "DOWN":
                     model.moveCannon(DOWN);
-                    break;
-                case "LEFT":
-                    model.moveCannon(LEFT);
-                    break;
-                case "RIGHT":
-                    model.moveCannon(RIGHT);
                     break;
             }
         }

@@ -27,22 +27,22 @@ public class MvcGame {
     }
 
     public void update() {
-        // nothing yet
+        model.update();
     }
 
     public void render(GraphicsContext gr) {
-        view.render(gr);
+        view.setGraphicsContext(gr);
     }
 
     public String getWindowTitle() {
         return "The MI-ADP.16 MvcGame";
     }
 
-    public int getWindowWidth() {
+    public static int getWindowWidth() {
         return MvcGameConfig.MAX_X;
     }
 
-    public int getWindowHeight() {
+    public static int getWindowHeight() {
         return MvcGameConfig.MAX_Y;
     }
 }
