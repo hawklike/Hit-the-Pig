@@ -5,6 +5,7 @@ import cz.cvut.fit.miadp.mvcgame.controller.GameController;
 import cz.cvut.fit.miadp.mvcgame.model.GameModel;
 import cz.cvut.fit.miadp.mvcgame.view.GameView;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
 
 import java.util.List;
 
@@ -22,8 +23,8 @@ public class MvcGame {
         controller = view.getController();
     }
 
-    public void processPressedKeys(List<String> pressedKeysCodes) {
-        controller.processPressedKeys(pressedKeysCodes);
+    public void processPressedKeys(List<KeyCode> pressedKeysCodes) {
+        controller.handleUserInput(pressedKeysCodes);
     }
 
     public void update() {

@@ -1,6 +1,9 @@
 package cz.cvut.fit.miadp.mvcgame.model;
 
-import cz.cvut.fit.miadp.mvcgame.model.object.Cannon;
+import cz.cvut.fit.miadp.mvcgame.abstract_factory.AbstractGameObjectFactory;
+import cz.cvut.fit.miadp.mvcgame.abstract_factory.GameObjectFactory_A;
+import cz.cvut.fit.miadp.mvcgame.model.object.AbstractCannon;
+import cz.cvut.fit.miadp.mvcgame.model.object.AbstractMissile;
 import cz.cvut.fit.miadp.mvcgame.observer.Observable;
 import cz.cvut.fit.miadp.mvcgame.observer.Observer;
 
@@ -11,11 +14,17 @@ import static cz.cvut.fit.miadp.mvcgame.model.Direction.DOWN;
 import static cz.cvut.fit.miadp.mvcgame.model.Direction.UP;
 
 public class GameModel implements Observable {
-    private Cannon cannon;
+    private AbstractCannon cannon;
+    private List<AbstractMissile> missiles;
+
     private List<Observer> observers;
+    private AbstractGameObjectFactory objectFactory;
+
 
     public GameModel() {
-        cannon = new Cannon();
+        missiles = new ArrayList<>();
+        objectFactory = new GameObjectFactory_A();
+        cannon = objectFactory.createCannon();
         observers = new ArrayList<>();
     }
 
@@ -34,8 +43,17 @@ public class GameModel implements Observable {
         notifyObservers();
     }
 
-    public Cannon getCannon() {
+    public void createMissile() {
+        missiles.add(objectFactory.createMissile(cannon.getPosition()));
+        notifyObservers();
+    }
+
+    public AbstractCannon getCannon() {
         return cannon;
+    }
+
+    public List<AbstractMissile> getMissiles() {
+        return missiles;
     }
 
     public void update() {

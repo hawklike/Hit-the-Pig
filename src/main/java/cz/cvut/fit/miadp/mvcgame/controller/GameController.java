@@ -1,6 +1,7 @@
 package cz.cvut.fit.miadp.mvcgame.controller;
 
 import cz.cvut.fit.miadp.mvcgame.model.GameModel;
+import javafx.scene.input.KeyCode;
 
 import java.util.List;
 
@@ -15,14 +16,17 @@ public class GameController {
         this.model = model;
     }
 
-    public void processPressedKeys(List<String> pressedKeysCodes) {
-        for(String code : pressedKeysCodes) {
+    public void handleUserInput(List<KeyCode> pressedKeysCodes) {
+        for(KeyCode code : pressedKeysCodes) {
             switch(code) {
-                case "UP":
+                case UP:
                     model.moveCannon(UP);
                     break;
-                case "DOWN":
+                case DOWN:
                     model.moveCannon(DOWN);
+                    break;
+                case SPACE:
+                    model.createMissile();
                     break;
             }
         }

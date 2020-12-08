@@ -7,6 +7,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -23,8 +24,8 @@ public class MvcGameJavaFxLauncher extends Application {
     @Override
     public void start(Stage stage) {
         String winTitle = theMvcGame.getWindowTitle();
-        int winWidth = theMvcGame.getWindowWidth();
-        int winHeight = theMvcGame.getWindowHeight();
+        int winWidth = MvcGame.getWindowWidth();
+        int winHeight = MvcGame.getWindowHeight();
 
         stage.setTitle(winTitle);
 
@@ -37,12 +38,12 @@ public class MvcGameJavaFxLauncher extends Application {
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
-        ArrayList<String> pressedKeysCodes = new ArrayList<String>();
+        ArrayList<KeyCode> pressedKeysCodes = new ArrayList<>();
 
         theScene.setOnKeyPressed(
                 e ->
                 {
-                    String code = e.getCode().toString();
+                    KeyCode code = e.getCode();
 
                     // only add once... prevent duplicates
                     if(!pressedKeysCodes.contains(code))
@@ -53,7 +54,7 @@ public class MvcGameJavaFxLauncher extends Application {
         theScene.setOnKeyReleased(
                 e ->
                 {
-                    String code = e.getCode().toString();
+                    KeyCode code = e.getCode();
                     pressedKeysCodes.remove(code);
                 }
         );

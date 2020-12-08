@@ -3,10 +3,13 @@ package cz.cvut.fit.miadp.mvcgame.view;
 import cz.cvut.fit.miadp.mvcgame.MvcGame;
 import cz.cvut.fit.miadp.mvcgame.controller.GameController;
 import cz.cvut.fit.miadp.mvcgame.model.GameModel;
-import cz.cvut.fit.miadp.mvcgame.model.object.Cannon;
+import cz.cvut.fit.miadp.mvcgame.model.object.AbstractCannon;
+import cz.cvut.fit.miadp.mvcgame.model.object.AbstractMissile;
 import cz.cvut.fit.miadp.mvcgame.observer.Observer;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+
+import java.util.List;
 
 public class GameView implements Observer {
 
@@ -42,9 +45,16 @@ public class GameView implements Observer {
         if(gr == null) return;
         gr.clearRect(0, 0, MvcGame.getWindowWidth(), MvcGame.getWindowHeight());
         drawCannon(model.getCannon());
+        drawMissiles(model.getMissiles());
     }
 
-    private void drawCannon(Cannon cannon) {
+    private void drawMissiles(List<AbstractMissile> missiles) {
+        for(AbstractMissile missile : missiles) {
+            gr.drawImage(new Image(missile.getImgResource()), missile.getPosition().getX(), missile.getPosition().getY());
+        }
+    }
+
+    private void drawCannon(AbstractCannon cannon) {
         gr.drawImage(new Image(cannon.getImgResource()), cannon.getPosition().getX(), cannon.getPosition().getY());
     }
 

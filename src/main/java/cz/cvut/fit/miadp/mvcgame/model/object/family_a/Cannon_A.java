@@ -1,23 +1,15 @@
-package cz.cvut.fit.miadp.mvcgame.model.object;
+package cz.cvut.fit.miadp.mvcgame.model.object.family_a;
 
 import cz.cvut.fit.miadp.mvcgame.config.MvcGameConfig;
 import cz.cvut.fit.miadp.mvcgame.model.Direction;
-import cz.cvut.fit.miadp.mvcgame.model.Position;
 import cz.cvut.fit.miadp.mvcgame.model.Vector;
+import cz.cvut.fit.miadp.mvcgame.model.object.AbstractCannon;
 
-public class Cannon extends GameObject {
+public class Cannon_A extends AbstractCannon {
 
-    public Cannon() {
-        this(new Position(MvcGameConfig.MAX_X / 7, MvcGameConfig.MAX_Y / 2));
-    }
-
-    @SuppressWarnings("WeakerAccess")
-    public Cannon(Position initialPosition) {
-        super(MvcGameConfig.CANNON_IMG_RESOURCE);
-        position = initialPosition;
-    }
-
+    @Override
     public void move(Direction direction) {
+
         switch(direction) {
             case UP:
                 move(new Vector(0, -1 * MvcGameConfig.CANNON_MOVE_STEP));
@@ -30,5 +22,4 @@ public class Cannon extends GameObject {
                 break;
         }
     }
-
 }

@@ -16,7 +16,7 @@ public abstract class GameObject {
         return imgResource;
     }
 
-    void move(Vector v) {
+    public void move(Vector v) {
         position.add(v);
     }
 
