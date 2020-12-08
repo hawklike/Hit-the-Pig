@@ -1,8 +1,9 @@
-package cz.cvut.fit.miadp.mvcgame.model.object;
+package cz.cvut.fit.miadp.mvcgame.model.object.base;
 
 import cz.cvut.fit.miadp.mvcgame.config.MvcGameConfig;
-import cz.cvut.fit.miadp.mvcgame.model.Direction;
-import cz.cvut.fit.miadp.mvcgame.model.Position;
+import cz.cvut.fit.miadp.mvcgame.model.coordinations.Direction;
+import cz.cvut.fit.miadp.mvcgame.model.coordinations.Position;
+import cz.cvut.fit.miadp.mvcgame.model.object.GameObject;
 
 public abstract class AbstractCannon extends GameObject {
 
@@ -17,5 +18,7 @@ public abstract class AbstractCannon extends GameObject {
     }
 
     public abstract void move(Direction direction);
+
+    public abstract AbstractMissile shoot();
 
 }

@@ -1,7 +1,8 @@
-package cz.cvut.fit.miadp.mvcgame.model.object;
+package cz.cvut.fit.miadp.mvcgame.model.object.base;
 
 import cz.cvut.fit.miadp.mvcgame.config.MvcGameConfig;
-import cz.cvut.fit.miadp.mvcgame.model.Position;
+import cz.cvut.fit.miadp.mvcgame.model.coordinations.Position;
+import cz.cvut.fit.miadp.mvcgame.model.object.GameObject;
 
 public abstract class AbstractMissile extends GameObject {
 

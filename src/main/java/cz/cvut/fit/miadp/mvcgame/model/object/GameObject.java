@@ -1,14 +1,14 @@
 package cz.cvut.fit.miadp.mvcgame.model.object;
 
-import cz.cvut.fit.miadp.mvcgame.model.Position;
-import cz.cvut.fit.miadp.mvcgame.model.Vector;
+import cz.cvut.fit.miadp.mvcgame.model.coordinations.Position;
+import cz.cvut.fit.miadp.mvcgame.model.coordinations.Vector;
 
 public abstract class GameObject {
-    Position position;
+    protected Position position;
 
     private final String imgResource;
 
-    GameObject(String imgResource) {
+    protected GameObject(String imgResource) {
         this.imgResource = imgResource;
     }
 
@@ -16,7 +16,7 @@ public abstract class GameObject {
         return imgResource;
     }
 
-    public void move(Vector v) {
+    protected void move(Vector v) {
         position.add(v);
     }
 

@@ -5,8 +5,8 @@ import javafx.scene.input.KeyCode;
 
 import java.util.List;
 
-import static cz.cvut.fit.miadp.mvcgame.model.Direction.DOWN;
-import static cz.cvut.fit.miadp.mvcgame.model.Direction.UP;
+import static cz.cvut.fit.miadp.mvcgame.model.coordinations.Direction.DOWN;
+import static cz.cvut.fit.miadp.mvcgame.model.coordinations.Direction.UP;
 
 public class GameController {
 

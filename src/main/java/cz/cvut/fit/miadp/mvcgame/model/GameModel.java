@@ -1,17 +1,18 @@
 package cz.cvut.fit.miadp.mvcgame.model;
 
 import cz.cvut.fit.miadp.mvcgame.abstract_factory.AbstractGameObjectFactory;
-import cz.cvut.fit.miadp.mvcgame.abstract_factory.GameObjectFactory_A;
-import cz.cvut.fit.miadp.mvcgame.model.object.AbstractCannon;
-import cz.cvut.fit.miadp.mvcgame.model.object.AbstractMissile;
+import cz.cvut.fit.miadp.mvcgame.abstract_factory.BasicGameObjectFactory;
+import cz.cvut.fit.miadp.mvcgame.model.coordinations.Direction;
+import cz.cvut.fit.miadp.mvcgame.model.object.base.AbstractCannon;
+import cz.cvut.fit.miadp.mvcgame.model.object.base.AbstractMissile;
 import cz.cvut.fit.miadp.mvcgame.observer.Observable;
 import cz.cvut.fit.miadp.mvcgame.observer.Observer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static cz.cvut.fit.miadp.mvcgame.model.Direction.DOWN;
-import static cz.cvut.fit.miadp.mvcgame.model.Direction.UP;
+import static cz.cvut.fit.miadp.mvcgame.model.coordinations.Direction.DOWN;
+import static cz.cvut.fit.miadp.mvcgame.model.coordinations.Direction.UP;
 
 public class GameModel implements Observable {
     private AbstractCannon cannon;
@@ -20,12 +21,14 @@ public class GameModel implements Observable {
     private List<Observer> observers;
     private AbstractGameObjectFactory objectFactory;
 
+    private Long time;
 
     public GameModel() {
         missiles = new ArrayList<>();
-        objectFactory = new GameObjectFactory_A();
+        objectFactory = new BasicGameObjectFactory();
         cannon = objectFactory.createCannon();
         observers = new ArrayList<>();
+        time = 0L;
     }
 
     public void moveCannon(Direction direction) {
@@ -44,7 +47,7 @@ public class GameModel implements Observable {
     }
 
     public void createMissile() {
-        missiles.add(objectFactory.createMissile(cannon.getPosition()));
+        missiles.add(cannon.shoot());
         notifyObservers();
     }
 
@@ -57,6 +60,8 @@ public class GameModel implements Observable {
     }
 
     public void update() {
+        time++;
+
         //move enemies and other stuff
     }
 
