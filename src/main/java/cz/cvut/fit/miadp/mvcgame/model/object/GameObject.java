@@ -2,6 +2,7 @@ package cz.cvut.fit.miadp.mvcgame.model.object;
 
 import cz.cvut.fit.miadp.mvcgame.model.coordinations.Position;
 import cz.cvut.fit.miadp.mvcgame.model.coordinations.Vector;
+import cz.cvut.fit.miadp.mvcgame.visitor.GameObjectVisitor;
 
 public abstract class GameObject {
     protected Position position;
@@ -23,4 +24,6 @@ public abstract class GameObject {
     public Position getPosition() {
         return position;
     }
+
+    public abstract void acceptVisitor(GameObjectVisitor renderer);
 }

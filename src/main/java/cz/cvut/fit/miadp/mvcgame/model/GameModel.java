@@ -6,6 +6,7 @@ import cz.cvut.fit.miadp.mvcgame.abstract_factory.AbstractGameObjectFactory;
 import cz.cvut.fit.miadp.mvcgame.abstract_factory.BasicGameObjectFactory;
 import cz.cvut.fit.miadp.mvcgame.config.MvcGameConfig;
 import cz.cvut.fit.miadp.mvcgame.model.coordinations.Direction;
+import cz.cvut.fit.miadp.mvcgame.model.object.GameObject;
 import cz.cvut.fit.miadp.mvcgame.model.object.base.AbstractCannon;
 import cz.cvut.fit.miadp.mvcgame.model.object.base.AbstractMissile;
 import cz.cvut.fit.miadp.mvcgame.observer.Observable;
@@ -63,6 +64,13 @@ public class GameModel implements Observable {
 
     public List<AbstractMissile> getMissiles() {
         return missiles;
+    }
+
+    public List<GameObject> getGameObjects() {
+        List<GameObject> objects = new ArrayList<>();
+        objects.add(cannon);
+        objects.addAll(missiles);
+        return objects;
     }
 
     public void update() {

@@ -14,6 +14,6 @@ public class BasicMissile extends AbstractMissile {
     @Override
     public void move(Long time) {
         //todo create gravity
-        position.add(new Vector(MvcGameConfig.MISSILE_MOVE_STEP, 0));
+        move(new Vector(MvcGameConfig.MISSILE_MOVE_STEP, 0));
     }
 }

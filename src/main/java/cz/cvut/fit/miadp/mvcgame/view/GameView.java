@@ -3,13 +3,9 @@ package cz.cvut.fit.miadp.mvcgame.view;
 import cz.cvut.fit.miadp.mvcgame.MvcGame;
 import cz.cvut.fit.miadp.mvcgame.controller.GameController;
 import cz.cvut.fit.miadp.mvcgame.model.GameModel;
-import cz.cvut.fit.miadp.mvcgame.model.object.base.AbstractCannon;
-import cz.cvut.fit.miadp.mvcgame.model.object.base.AbstractMissile;
 import cz.cvut.fit.miadp.mvcgame.observer.Observer;
+import cz.cvut.fit.miadp.mvcgame.visitor.GameObjectRenderer;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-
-import java.util.List;
 
 public class GameView implements Observer {
 
@@ -17,12 +13,14 @@ public class GameView implements Observer {
     private GameModel model;
 
     private GraphicsContext gr;
+    private GameObjectRenderer renderer;
 
     public GameView(GameModel model) {
         this.model = model;
         controller = new GameController(model);
         gr = null;
         this.model.registerObserver(this);
+        renderer = new GameObjectRenderer();
     }
 
     public GameController getController() {
@@ -37,6 +35,7 @@ public class GameView implements Observer {
     public void setGraphicsContext(GraphicsContext gr) {
         if(this.gr == null) {
             this.gr = gr;
+            renderer.setGraphicsContext(gr);
             render();
         }
     }
@@ -44,18 +43,7 @@ public class GameView implements Observer {
     private void render() {
         if(gr == null) return;
         gr.clearRect(0, 0, MvcGame.getWindowWidth(), MvcGame.getWindowHeight());
-        drawCannon(model.getCannon());
-        drawMissiles(model.getMissiles());
-    }
-
-    private void drawMissiles(List<AbstractMissile> missiles) {
-        for(AbstractMissile missile : missiles) {
-            gr.drawImage(new Image(missile.getImgResource()), missile.getPosition().getX(), missile.getPosition().getY());
-        }
-    }
-
-    private void drawCannon(AbstractCannon cannon) {
-        gr.drawImage(new Image(cannon.getImgResource()), cannon.getPosition().getX(), cannon.getPosition().getY());
+        model.getGameObjects().forEach(gameObject -> gameObject.acceptVisitor(renderer));
     }
 
 }

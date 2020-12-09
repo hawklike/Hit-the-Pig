@@ -4,6 +4,7 @@ import cz.cvut.fit.miadp.mvcgame.config.MvcGameConfig;
 import cz.cvut.fit.miadp.mvcgame.model.coordinations.Direction;
 import cz.cvut.fit.miadp.mvcgame.model.coordinations.Position;
 import cz.cvut.fit.miadp.mvcgame.model.object.GameObject;
+import cz.cvut.fit.miadp.mvcgame.visitor.GameObjectVisitor;
 
 public abstract class AbstractCannon extends GameObject {
 
@@ -21,4 +22,8 @@ public abstract class AbstractCannon extends GameObject {
 
     public abstract AbstractMissile shoot();
 
+    @Override
+    public void acceptVisitor(GameObjectVisitor renderer) {
+        renderer.visitCannon(this);
+    }
 }
