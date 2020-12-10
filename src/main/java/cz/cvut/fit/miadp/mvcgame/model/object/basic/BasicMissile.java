@@ -1,19 +1,17 @@
 package cz.cvut.fit.miadp.mvcgame.model.object.basic;
 
-import cz.cvut.fit.miadp.mvcgame.config.MvcGameConfig;
 import cz.cvut.fit.miadp.mvcgame.model.coordinations.Position;
-import cz.cvut.fit.miadp.mvcgame.model.coordinations.Vector;
 import cz.cvut.fit.miadp.mvcgame.model.object.base.AbstractMissile;
+import cz.cvut.fit.miadp.mvcgame.strategy.MovingStrategy;
 
 public class BasicMissile extends AbstractMissile {
 
-    public BasicMissile(Position initialPosition) {
-        super(initialPosition);
+    public BasicMissile(Position initialPosition, double initialAngle, int initialVelocity, MovingStrategy movingStrategy) {
+        super(initialPosition, initialAngle, initialVelocity, movingStrategy);
     }
 
     @Override
-    public void move(Long time) {
-        //todo create gravity
-        move(new Vector(MvcGameConfig.MISSILE_MOVE_STEP, 0));
+    public void move() {
+        movingStrategy.updatePosition(this);
     }
 }

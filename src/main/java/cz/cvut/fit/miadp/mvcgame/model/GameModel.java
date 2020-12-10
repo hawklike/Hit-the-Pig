@@ -1,22 +1,21 @@
 package cz.cvut.fit.miadp.mvcgame.model;
 
-import cz.cvut.fit.miadp.mvcgame.Log;
 import cz.cvut.fit.miadp.mvcgame.MvcGame;
 import cz.cvut.fit.miadp.mvcgame.abstract_factory.AbstractGameObjectFactory;
 import cz.cvut.fit.miadp.mvcgame.abstract_factory.BasicGameObjectFactory;
-import cz.cvut.fit.miadp.mvcgame.config.MvcGameConfig;
-import cz.cvut.fit.miadp.mvcgame.model.coordinations.Direction;
+import cz.cvut.fit.miadp.mvcgame.model.coordinations.CannonDirection;
 import cz.cvut.fit.miadp.mvcgame.model.object.GameObject;
 import cz.cvut.fit.miadp.mvcgame.model.object.base.AbstractCannon;
 import cz.cvut.fit.miadp.mvcgame.model.object.base.AbstractMissile;
 import cz.cvut.fit.miadp.mvcgame.observer.Observable;
 import cz.cvut.fit.miadp.mvcgame.observer.Observer;
+import cz.cvut.fit.miadp.mvcgame.strategy.ForwardMovingStrategy;
+import cz.cvut.fit.miadp.mvcgame.strategy.MovingStrategy;
+import cz.cvut.fit.miadp.mvcgame.strategy.RealMovingStrategy;
+import cz.cvut.fit.miadp.mvcgame.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static cz.cvut.fit.miadp.mvcgame.model.coordinations.Direction.DOWN;
-import static cz.cvut.fit.miadp.mvcgame.model.coordinations.Direction.UP;
 
 public class GameModel implements Observable {
     private AbstractCannon cannon;
@@ -25,45 +24,60 @@ public class GameModel implements Observable {
     private List<Observer> observers;
     private AbstractGameObjectFactory objectFactory;
 
-    private Long time = 0L;
-    private Long shotTime = 0L;
+    private MovingStrategy missileMovingStrategy;
 
     public GameModel() {
         missiles = new ArrayList<>();
         objectFactory = new BasicGameObjectFactory();
         cannon = objectFactory.createCannon();
         observers = new ArrayList<>();
+        missileMovingStrategy = new RealMovingStrategy();
     }
 
-    public void moveCannon(Direction direction) {
+    public void moveCannon(CannonDirection direction) {
         switch(direction) {
             case UP:
-                cannon.move(UP);
+                cannon.move(CannonDirection.UP);
                 break;
             case DOWN:
-                cannon.move(DOWN);
+                cannon.move(CannonDirection.DOWN);
                 break;
-            case LEFT:
-            case RIGHT:
+        }
+        notifyObservers();
+    }
+
+    public void aimCannon(CannonDirection direction) {
+        Log.print("angle: " + cannon.getAngle());
+        switch(direction) {
+            case UP:
+                cannon.aim(CannonDirection.UP);
+                break;
+            case DOWN:
+                cannon.aim(CannonDirection.DOWN);
+                break;
+        }
+        notifyObservers();
+    }
+
+    public void powerCannon(CannonDirection direction) {
+        Log.print("power: " + cannon.getPower());
+        switch(direction) {
+            case UP:
+                cannon.power(CannonDirection.UP);
+                break;
+            case DOWN:
+                cannon.power(CannonDirection.DOWN);
                 break;
         }
         notifyObservers();
     }
 
     public void createMissile() {
-        if(time - MvcGameConfig.MISSILE_TIME_DELAY > shotTime) {
-            shotTime = time;
-            missiles.add(cannon.shoot());
+        AbstractMissile missile = cannon.shoot();
+        if(missile != null) {
+            missiles.add(missile);
             notifyObservers();
         }
-    }
-
-    public AbstractCannon getCannon() {
-        return cannon;
-    }
-
-    public List<AbstractMissile> getMissiles() {
-        return missiles;
     }
 
     public List<GameObject> getGameObjects() {
@@ -74,13 +88,12 @@ public class GameModel implements Observable {
     }
 
     public void update() {
-        time++;
         moveMissiles();
         //move enemies and other stuff
     }
 
     private void moveMissiles() {
-        missiles.forEach(missile -> missile.move(time));
+        missiles.forEach(AbstractMissile::move);
         removeMissiles();
         notifyObservers();
     }
@@ -88,13 +101,21 @@ public class GameModel implements Observable {
     private void removeMissiles() {
         missiles.removeIf(missile -> missile.getPosition().getX() > MvcGame.getWindowWidth() ||
                 missile.getPosition().getY() > MvcGame.getWindowHeight());
-        Log.print("Active missiles: " + missiles.size());
+//        Log.print("Active missiles: " + missiles.size());
     }
 
     @Override
     public void registerObserver(Observer observer) {
         if(!observers.contains(observer)) {
             observers.add(observer);
+        }
+    }
+
+    public void toggleMissileStrategy() {
+        if(missileMovingStrategy instanceof ForwardMovingStrategy) {
+            missileMovingStrategy = new RealMovingStrategy();
+        } else if(missileMovingStrategy instanceof RealMovingStrategy) {
+            missileMovingStrategy = new ForwardMovingStrategy();
         }
     }
 

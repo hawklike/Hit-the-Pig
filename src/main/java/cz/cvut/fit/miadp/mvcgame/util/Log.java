@@ -1,4 +1,4 @@
-package cz.cvut.fit.miadp.mvcgame;
+package cz.cvut.fit.miadp.mvcgame.util;
 
 public class Log {
 

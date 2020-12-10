@@ -17,7 +17,7 @@ public abstract class GameObject implements Visitable {
         return imgResource;
     }
 
-    protected void move(Vector v) {
+    public void move(Vector v) {
         position.add(v);
     }
 
