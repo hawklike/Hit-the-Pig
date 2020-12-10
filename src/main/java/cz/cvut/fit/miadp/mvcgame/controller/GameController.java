@@ -1,6 +1,6 @@
 package cz.cvut.fit.miadp.mvcgame.controller;
 
-import cz.cvut.fit.miadp.mvcgame.model.GameModel;
+import cz.cvut.fit.miadp.mvcgame.model.GameModelInterface;
 import cz.cvut.fit.miadp.mvcgame.model.coordinations.CannonDirection;
 import javafx.scene.input.KeyCode;
 
@@ -8,9 +8,9 @@ import java.util.List;
 
 public class GameController {
 
-    private GameModel model;
+    private GameModelInterface model;
 
-    public GameController(GameModel model) {
+    public GameController(GameModelInterface model) {
         this.model = model;
     }
 

@@ -1,6 +1,6 @@
 package cz.cvut.fit.miadp.mvcgame.observer;
 
-public interface CannonStateObservable {
+public interface CannonObservable {
     void registerObserver(CannonObserver observer);
 
     void unregisterObserver(CannonObserver observer);

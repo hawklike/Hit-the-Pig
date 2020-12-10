@@ -1,13 +1,13 @@
 package cz.cvut.fit.miadp.mvcgame.state;
 
 import cz.cvut.fit.miadp.mvcgame.model.object.cannon.AbstractCannon;
+import cz.cvut.fit.miadp.mvcgame.observer.CannonObservable;
 import cz.cvut.fit.miadp.mvcgame.observer.CannonObserver;
-import cz.cvut.fit.miadp.mvcgame.observer.CannonStateObservable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CannonStateHolder implements CannonStateObservable {
+public class CannonStateHolder implements CannonObservable {
 
     private CannonState state;
 

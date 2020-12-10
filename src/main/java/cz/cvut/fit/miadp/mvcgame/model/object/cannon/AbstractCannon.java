@@ -27,17 +27,14 @@ public abstract class AbstractCannon extends GameObject implements CannonState {
     private Timer powerTimer;
 
     public AbstractCannon(int power, int speed, double delayBetweenShots, MovingStrategy missileMovement) {
-
         this(MvcGameConfig.CANNON_ANGLE, power, speed, delayBetweenShots, missileMovement);
     }
 
     public AbstractCannon(double angle, int power, int speed, double delayBetweenShots, MovingStrategy missileMovement) {
-
         this(new Position(MvcGameConfig.MAX_X / 7, MvcGameConfig.MAX_Y / 2), angle, power, speed, delayBetweenShots, missileMovement);
     }
 
     public AbstractCannon(Position position, int power, int speed, double delayBetweenShots, MovingStrategy missileMovement) {
-
         this(position, MvcGameConfig.CANNON_ANGLE, power, speed, delayBetweenShots, missileMovement);
     }
 
@@ -110,6 +107,26 @@ public abstract class AbstractCannon extends GameObject implements CannonState {
 
     public int getPower() {
         return power;
+    }
+
+    private class Memento {
+        private double angle;
+        private int power;
+
+        Memento(double angle, int power) {
+            this.angle = angle;
+            this.power = power;
+        }
+    }
+
+    protected Object createMemento() {
+        return new Memento(angle, power);
+    }
+
+    public void restore(Object memento) {
+        Memento m = (Memento) memento;
+        angle = m.angle;
+        power = m.power;
     }
 
     @Override

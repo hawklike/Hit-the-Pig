@@ -1,6 +1,7 @@
 package cz.cvut.fit.miadp.mvcgame.model.object.cannon;
 
 import cz.cvut.fit.miadp.mvcgame.config.MvcGameConfig;
+import cz.cvut.fit.miadp.mvcgame.memento_singleton.CannonCareTaker;
 import cz.cvut.fit.miadp.mvcgame.model.coordinations.Position;
 import cz.cvut.fit.miadp.mvcgame.state.CannonStateHolder;
 import cz.cvut.fit.miadp.mvcgame.strategy.RealMovingStrategy;
@@ -24,6 +25,7 @@ public class BasicCannon extends AbstractCannon {
 
     @Override
     public void nextState(CannonStateHolder cannonState) {
+        CannonCareTaker.getInstance().saveState(createMemento());
         cannonState.upgrade(new AdvancedCannon(getPosition()));
     }
 }

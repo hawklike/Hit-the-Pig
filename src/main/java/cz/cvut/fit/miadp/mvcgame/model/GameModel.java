@@ -16,7 +16,7 @@ import cz.cvut.fit.miadp.mvcgame.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameModel implements GUIObservable, CannonObserver {
+public class GameModel implements GUIObservable, CannonObserver, GameModelInterface {
     private AbstractCannon cannon;
     private List<AbstractMissile> missiles;
 
@@ -28,12 +28,15 @@ public class GameModel implements GUIObservable, CannonObserver {
     private long ticks = 0;
     private long upgradeCannon = 0;
 
+    private int score;
+
     public GameModel() {
         missiles = new ArrayList<>();
         objectFactory = new BasicGameObjectFactory();
         cannon = objectFactory.createCannon();
         observers = new ArrayList<>();
         cannonState = new CannonStateHolder(cannon, this);
+        score = 0;
     }
 
     public void moveCannon(CannonDirection direction) {
@@ -133,7 +136,6 @@ public class GameModel implements GUIObservable, CannonObserver {
 
     @Override
     public void updateCannon(AbstractCannon cannon) {
-        Log.print("here");
         this.cannon = cannon;
     }
 }
