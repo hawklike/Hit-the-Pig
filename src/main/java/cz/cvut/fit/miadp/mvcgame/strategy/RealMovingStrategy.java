@@ -16,6 +16,6 @@ public class RealMovingStrategy implements MovingStrategy {
         int dX = (int) (Math.sqrt(velocity) * Math.cos(Math.PI / 180 * angle));
         int dY = (int) (velocity * time * Math.sin(Math.PI / 180 * angle) - (MvcGameConfig.GRAVITY * Math.pow(time, 2)));
 
-        missile.move(new Vector(Math.abs(dX), -dY));
+        missile.moveBy(new Vector(Math.abs(dX), -dY));
     }
 }

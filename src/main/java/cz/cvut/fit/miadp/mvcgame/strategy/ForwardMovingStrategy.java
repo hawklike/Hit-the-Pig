@@ -7,6 +7,6 @@ public class ForwardMovingStrategy implements MovingStrategy {
 
     @Override
     public void updatePosition(AbstractMissile missile) {
-        missile.move(new Vector(missile.getVelocity(), 0));
+        missile.moveBy(new Vector(missile.getVelocity(), 0));
     }
 }

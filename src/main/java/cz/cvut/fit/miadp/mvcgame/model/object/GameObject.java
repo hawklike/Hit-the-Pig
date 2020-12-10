@@ -2,10 +2,12 @@ package cz.cvut.fit.miadp.mvcgame.model.object;
 
 import cz.cvut.fit.miadp.mvcgame.model.coordinations.Position;
 import cz.cvut.fit.miadp.mvcgame.model.coordinations.Vector;
+import cz.cvut.fit.miadp.mvcgame.servant.Movable;
+import cz.cvut.fit.miadp.mvcgame.servant.MoveServant;
 import cz.cvut.fit.miadp.mvcgame.visitor.Visitable;
 
-public abstract class GameObject implements Visitable {
-    protected Position position;
+public abstract class GameObject implements Visitable, Movable {
+    private Position position;
 
     private final String imgResource;
 
@@ -18,11 +20,16 @@ public abstract class GameObject implements Visitable {
         return imgResource;
     }
 
-    public void move(Vector v) {
-        position.add(v);
+    public void moveBy(Vector v) {
+        MoveServant.moveBy(this, v);
     }
 
     public Position getPosition() {
         return position;
+    }
+
+    @Override
+    public void setPosition(Position position) {
+        this.position = position;
     }
 }

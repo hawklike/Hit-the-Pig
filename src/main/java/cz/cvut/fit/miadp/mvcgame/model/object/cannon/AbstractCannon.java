@@ -51,10 +51,10 @@ public abstract class AbstractCannon extends GameObject implements CannonState {
     public void move(CannonDirection direction) {
         switch(direction) {
             case UP:
-                move(new Vector(0, -1 * speed));
+                moveBy(new Vector(0, -1 * speed));
                 break;
             case DOWN:
-                move(new Vector(0, speed));
+                moveBy(new Vector(0, speed));
                 break;
         }
     }

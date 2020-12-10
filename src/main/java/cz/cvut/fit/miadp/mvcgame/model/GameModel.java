@@ -28,15 +28,12 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
     private long ticks = 0;
     private long upgradeCannon = 0;
 
-    private int score;
-
     public GameModel() {
         missiles = new ArrayList<>();
         objectFactory = new BasicGameObjectFactory();
         cannon = objectFactory.createCannon();
         observers = new ArrayList<>();
         cannonState = new CannonStateHolder(cannon, this);
-        score = 0;
     }
 
     public void moveCannon(CannonDirection direction) {
@@ -102,7 +99,7 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
     public void update() {
         moveMissiles();
         ticks++;
-        //move enemies and other stuff
+        //moveBy enemies and other stuff
     }
 
     private void moveMissiles() {
