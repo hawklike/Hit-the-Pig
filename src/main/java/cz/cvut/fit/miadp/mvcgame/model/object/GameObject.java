@@ -9,8 +9,9 @@ public abstract class GameObject implements Visitable {
 
     private final String imgResource;
 
-    protected GameObject(String imgResource) {
+    protected GameObject(String imgResource, Position position) {
         this.imgResource = imgResource;
+        this.position = position;
     }
 
     public String getImgResource() {

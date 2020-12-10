@@ -2,11 +2,11 @@ package cz.cvut.fit.miadp.mvcgame.model;
 
 import cz.cvut.fit.miadp.mvcgame.MvcGame;
 import cz.cvut.fit.miadp.mvcgame.abstract_factory.AbstractGameObjectFactory;
-import cz.cvut.fit.miadp.mvcgame.abstract_factory.BasicGameObjectFactory;
+import cz.cvut.fit.miadp.mvcgame.abstract_factory.AdvancedGameObjectFactory;
 import cz.cvut.fit.miadp.mvcgame.model.coordinations.CannonDirection;
 import cz.cvut.fit.miadp.mvcgame.model.object.GameObject;
-import cz.cvut.fit.miadp.mvcgame.model.object.base.AbstractCannon;
-import cz.cvut.fit.miadp.mvcgame.model.object.base.AbstractMissile;
+import cz.cvut.fit.miadp.mvcgame.model.object.cannon.AbstractCannon;
+import cz.cvut.fit.miadp.mvcgame.model.object.missile.AbstractMissile;
 import cz.cvut.fit.miadp.mvcgame.observer.Observable;
 import cz.cvut.fit.miadp.mvcgame.observer.Observer;
 import cz.cvut.fit.miadp.mvcgame.strategy.ForwardMovingStrategy;
@@ -28,7 +28,7 @@ public class GameModel implements Observable {
 
     public GameModel() {
         missiles = new ArrayList<>();
-        objectFactory = new BasicGameObjectFactory();
+        objectFactory = new AdvancedGameObjectFactory();
         cannon = objectFactory.createCannon();
         observers = new ArrayList<>();
         missileMovingStrategy = new RealMovingStrategy();

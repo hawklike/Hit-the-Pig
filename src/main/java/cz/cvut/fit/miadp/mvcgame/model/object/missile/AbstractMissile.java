@@ -1,4 +1,4 @@
-package cz.cvut.fit.miadp.mvcgame.model.object.base;
+package cz.cvut.fit.miadp.mvcgame.model.object.missile;
 
 import cz.cvut.fit.miadp.mvcgame.config.MvcGameConfig;
 import cz.cvut.fit.miadp.mvcgame.model.coordinations.Position;
@@ -6,6 +6,7 @@ import cz.cvut.fit.miadp.mvcgame.model.object.LifetimeLimitedGameObject;
 import cz.cvut.fit.miadp.mvcgame.strategy.MovingStrategy;
 import cz.cvut.fit.miadp.mvcgame.visitor.GameObjectVisitor;
 
+@SuppressWarnings("WeakerAccess")
 public abstract class AbstractMissile extends LifetimeLimitedGameObject {
 
     private double angle;
@@ -13,8 +14,7 @@ public abstract class AbstractMissile extends LifetimeLimitedGameObject {
     protected MovingStrategy movingStrategy;
 
     public AbstractMissile(Position initialPosition, double initAngle, int initVelocity, MovingStrategy movingStrategy) {
-        super(MvcGameConfig.MISSILE_IMG_RESOURCE);
-        position = initialPosition;
+        super(MvcGameConfig.MISSILE_IMG_RESOURCE, initialPosition);
         angle = initAngle;
         velocity = initVelocity;
         this.movingStrategy = movingStrategy;

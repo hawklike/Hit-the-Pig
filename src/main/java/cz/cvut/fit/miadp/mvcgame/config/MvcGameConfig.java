@@ -5,19 +5,20 @@ public class MvcGameConfig {
     public static final int MAX_Y = 720;
 
     public static final String CANNON_IMG_RESOURCE = "images/cannon.png";
-
-    public static final int BASIC_CANNON_MOVE_STEP = 3;
-
-    public static final double CANNON_ANGLE_STEP = Math.PI / 18;
-    public static final double BASIC_CANNON_ANGLE = 0;
-
     public static final double CANNON_POWER_DELAY_MILLIS = 500;
     public static final int CANNON_POWER_STEP = 1;
-    public static final int BASIC_CANNON_POWER = 5;
-    public static final int BASIC_CANNON_MIN_POWER = 0;
-    public static final int BASIC_CANNON_MAX_POWER = 30;
+    public static final double CANNON_ANGLE_STEP = Math.PI / 18;
+    public static final double CANNON_ANGLE = 0;
+    public static final int CANNON_MIN_POWER = 0;
+    public static final int CANNON_MAX_POWER = 50;
 
+    public static final int BASIC_CANNON_MOVE_STEP = 3;
+    public static final int BASIC_CANNON_POWER = 5;
     public static final int BASIC_CANNON_SHOOT_DELAY_MILLIS = 1500;
+
+    public static final int PRO_CANNON_MOVE_STEP = 6;
+    public static final int PRO_CANNON_POWER = 10;
+    public static final int PRO_CANNON_SHOOT_DELAY_MILLIS = 500;
 
 
     public static final String MISSILE_IMG_RESOURCE = "images/missile.png";
