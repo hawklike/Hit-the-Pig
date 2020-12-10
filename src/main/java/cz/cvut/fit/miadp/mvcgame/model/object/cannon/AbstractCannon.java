@@ -7,12 +7,13 @@ import cz.cvut.fit.miadp.mvcgame.model.coordinations.Vector;
 import cz.cvut.fit.miadp.mvcgame.model.object.GameObject;
 import cz.cvut.fit.miadp.mvcgame.model.object.missile.AbstractMissile;
 import cz.cvut.fit.miadp.mvcgame.model.object.missile.Missile;
+import cz.cvut.fit.miadp.mvcgame.state.CannonState;
 import cz.cvut.fit.miadp.mvcgame.strategy.MovingStrategy;
 import cz.cvut.fit.miadp.mvcgame.util.Timer;
 import cz.cvut.fit.miadp.mvcgame.visitor.GameObjectVisitor;
 
 @SuppressWarnings("WeakerAccess")
-public abstract class AbstractCannon extends GameObject {
+public abstract class AbstractCannon extends GameObject implements CannonState {
 
     protected double angle;
     protected int power;
@@ -33,6 +34,11 @@ public abstract class AbstractCannon extends GameObject {
     public AbstractCannon(double angle, int power, int speed, double delayBetweenShots, MovingStrategy missileMovement) {
 
         this(new Position(MvcGameConfig.MAX_X / 7, MvcGameConfig.MAX_Y / 2), angle, power, speed, delayBetweenShots, missileMovement);
+    }
+
+    public AbstractCannon(Position position, int power, int speed, double delayBetweenShots, MovingStrategy missileMovement) {
+
+        this(position, MvcGameConfig.CANNON_ANGLE, power, speed, delayBetweenShots, missileMovement);
     }
 
     public AbstractCannon(Position initialPosition, double angle, int power, int speed, double delayBetweenShots, MovingStrategy missileMovement) {

@@ -2,36 +2,38 @@ package cz.cvut.fit.miadp.mvcgame.model;
 
 import cz.cvut.fit.miadp.mvcgame.MvcGame;
 import cz.cvut.fit.miadp.mvcgame.abstract_factory.AbstractGameObjectFactory;
-import cz.cvut.fit.miadp.mvcgame.abstract_factory.AdvancedGameObjectFactory;
+import cz.cvut.fit.miadp.mvcgame.abstract_factory.BasicGameObjectFactory;
 import cz.cvut.fit.miadp.mvcgame.model.coordinations.CannonDirection;
 import cz.cvut.fit.miadp.mvcgame.model.object.GameObject;
 import cz.cvut.fit.miadp.mvcgame.model.object.cannon.AbstractCannon;
 import cz.cvut.fit.miadp.mvcgame.model.object.missile.AbstractMissile;
-import cz.cvut.fit.miadp.mvcgame.observer.Observable;
-import cz.cvut.fit.miadp.mvcgame.observer.Observer;
-import cz.cvut.fit.miadp.mvcgame.strategy.ForwardMovingStrategy;
-import cz.cvut.fit.miadp.mvcgame.strategy.MovingStrategy;
-import cz.cvut.fit.miadp.mvcgame.strategy.RealMovingStrategy;
+import cz.cvut.fit.miadp.mvcgame.observer.CannonObserver;
+import cz.cvut.fit.miadp.mvcgame.observer.GUIObservable;
+import cz.cvut.fit.miadp.mvcgame.observer.GUIObserver;
+import cz.cvut.fit.miadp.mvcgame.state.CannonStateHolder;
 import cz.cvut.fit.miadp.mvcgame.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameModel implements Observable {
+public class GameModel implements GUIObservable, CannonObserver {
     private AbstractCannon cannon;
     private List<AbstractMissile> missiles;
 
-    private List<Observer> observers;
+    private List<GUIObserver> observers;
     private AbstractGameObjectFactory objectFactory;
 
-    private MovingStrategy missileMovingStrategy;
+    private CannonStateHolder cannonState;
+
+    private long ticks = 0;
+    private long upgradeCannon = 0;
 
     public GameModel() {
         missiles = new ArrayList<>();
-        objectFactory = new AdvancedGameObjectFactory();
+        objectFactory = new BasicGameObjectFactory();
         cannon = objectFactory.createCannon();
         observers = new ArrayList<>();
-        missileMovingStrategy = new RealMovingStrategy();
+        cannonState = new CannonStateHolder(cannon, this);
     }
 
     public void moveCannon(CannonDirection direction) {
@@ -80,6 +82,13 @@ public class GameModel implements Observable {
         }
     }
 
+    public void upgradeCannon() {
+        if(ticks - upgradeCannon > 400) {
+            upgradeCannon = ticks;
+            cannonState.upgrade();
+        }
+    }
+
     public List<GameObject> getGameObjects() {
         List<GameObject> objects = new ArrayList<>();
         objects.add(cannon);
@@ -89,6 +98,7 @@ public class GameModel implements Observable {
 
     public void update() {
         moveMissiles();
+        ticks++;
         //move enemies and other stuff
     }
 
@@ -105,27 +115,25 @@ public class GameModel implements Observable {
     }
 
     @Override
-    public void registerObserver(Observer observer) {
+    public void registerObserver(GUIObserver observer) {
         if(!observers.contains(observer)) {
             observers.add(observer);
         }
     }
 
-    public void toggleMissileStrategy() {
-        if(missileMovingStrategy instanceof ForwardMovingStrategy) {
-            missileMovingStrategy = new RealMovingStrategy();
-        } else if(missileMovingStrategy instanceof RealMovingStrategy) {
-            missileMovingStrategy = new ForwardMovingStrategy();
-        }
-    }
-
     @Override
-    public void unregisterObserver(Observer observer) {
+    public void unregisterObserver(GUIObserver observer) {
         observers.remove(observer);
     }
 
     @Override
     public void notifyObservers() {
-        observers.forEach(Observer::update);
+        observers.forEach(GUIObserver::updateGUI);
+    }
+
+    @Override
+    public void updateCannon(AbstractCannon cannon) {
+        Log.print("here");
+        this.cannon = cannon;
     }
 }

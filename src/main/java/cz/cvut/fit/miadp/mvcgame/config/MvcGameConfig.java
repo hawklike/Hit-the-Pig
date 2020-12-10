@@ -19,7 +19,7 @@ public class MvcGameConfig {
     public static final int PRO_CANNON_MOVE_STEP = 6;
     public static final int PRO_CANNON_POWER = 10;
     public static final int PRO_CANNON_SHOOT_DELAY_MILLIS = 500;
-
+    public static final int PRO_CANNON_SHOOT_TIME = 5000;
 
     public static final String MISSILE_IMG_RESOURCE = "images/missile.png";
 
