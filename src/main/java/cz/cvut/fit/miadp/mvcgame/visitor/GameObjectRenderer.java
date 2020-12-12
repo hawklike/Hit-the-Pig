@@ -1,14 +1,14 @@
 package cz.cvut.fit.miadp.mvcgame.visitor;
 
+import cz.cvut.fit.miadp.mvcgame.bridge.GameGraphicsInterface;
 import cz.cvut.fit.miadp.mvcgame.model.object.GameObject;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class GameObjectRenderer implements GameObjectVisitor {
 
-    private GraphicsContext gr;
+    private GameGraphicsInterface gr;
 
-    public void setGraphicsContext(GraphicsContext gr) {
+    public void setGraphicsContext(GameGraphicsInterface gr) {
         this.gr = gr;
     }
 
@@ -17,6 +17,6 @@ public class GameObjectRenderer implements GameObjectVisitor {
         Image sprite = new Image(object.getImgResource());
         object.setHeight(sprite.getHeight());
         object.setWidth(sprite.getWidth());
-        gr.drawImage(sprite, object.getPosition().getX(), object.getPosition().getY());
+        gr.drawImage(object.getImgResource(), object.getPosition());
     }
 }

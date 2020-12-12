@@ -1,6 +1,9 @@
 package cz.cvut.fit.miadp;
 
 import cz.cvut.fit.miadp.mvcgame.MvcGame;
+import cz.cvut.fit.miadp.mvcgame.bridge.GameGraphics;
+import cz.cvut.fit.miadp.mvcgame.bridge.GameGraphicsInterface;
+import cz.cvut.fit.miadp.mvcgame.bridge.JavaFxGraphics;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -37,6 +40,7 @@ public class MvcGameJavaFxLauncher extends Application {
         root.getChildren().add(canvas);
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
+        GameGraphicsInterface gr = new GameGraphics(new JavaFxGraphics(gc));
 
         ArrayList<KeyCode> pressedKeysCodes = new ArrayList<>();
 
@@ -64,7 +68,7 @@ public class MvcGameJavaFxLauncher extends Application {
             public void handle(long currentNanoTime) {
                 theMvcGame.processPressedKeys(pressedKeysCodes);
                 theMvcGame.update();
-                theMvcGame.render(gc);
+                theMvcGame.render(gr);
             }
         }.start();
 
