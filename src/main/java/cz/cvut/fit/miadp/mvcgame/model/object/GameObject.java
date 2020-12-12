@@ -4,10 +4,14 @@ import cz.cvut.fit.miadp.mvcgame.model.coordinations.Position;
 import cz.cvut.fit.miadp.mvcgame.model.coordinations.Vector;
 import cz.cvut.fit.miadp.mvcgame.servant.Movable;
 import cz.cvut.fit.miadp.mvcgame.servant.MoveServant;
+import cz.cvut.fit.miadp.mvcgame.visitor.GameObjectVisitor;
 import cz.cvut.fit.miadp.mvcgame.visitor.Visitable;
+import javafx.geometry.Rectangle2D;
 
 public abstract class GameObject implements Visitable, Movable {
     private Position position;
+    private double width;
+    private double height;
 
     private final String imgResource;
 
@@ -31,5 +35,26 @@ public abstract class GameObject implements Visitable, Movable {
     @Override
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    @Override
+    public void acceptVisitor(GameObjectVisitor visitor) {
+        visitor.visitGameObject(this);
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    private Rectangle2D getBoundary() {
+        return new Rectangle2D(position.getX(), position.getY(), width, height);
+    }
+
+    public boolean collidesWith(GameObject otherObject) {
+        return otherObject.getBoundary().intersects(getBoundary());
     }
 }

@@ -1,7 +1,6 @@
 package cz.cvut.fit.miadp.mvcgame.visitor;
 
-import cz.cvut.fit.miadp.mvcgame.model.object.cannon.AbstractCannon;
-import cz.cvut.fit.miadp.mvcgame.model.object.missile.AbstractMissile;
+import cz.cvut.fit.miadp.mvcgame.model.object.GameObject;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -14,13 +13,10 @@ public class GameObjectRenderer implements GameObjectVisitor {
     }
 
     @Override
-    public void visitCannon(AbstractCannon cannon) {
-        gr.drawImage(new Image(cannon.getImgResource()), cannon.getPosition().getX(), cannon.getPosition().getY());
-    }
-
-    @Override
-    public void visitMissile(AbstractMissile missile) {
-        gr.drawImage(new Image(missile.getImgResource()), missile.getPosition().getX(), missile.getPosition().getY());
-
+    public void visitGameObject(GameObject object) {
+        Image sprite = new Image(object.getImgResource());
+        object.setHeight(sprite.getHeight());
+        object.setWidth(sprite.getWidth());
+        gr.drawImage(sprite, object.getPosition().getX(), object.getPosition().getY());
     }
 }

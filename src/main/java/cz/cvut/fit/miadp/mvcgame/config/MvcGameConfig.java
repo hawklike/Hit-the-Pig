@@ -23,5 +23,10 @@ public class MvcGameConfig {
 
     public static final String MISSILE_IMG_RESOURCE = "images/missile.png";
 
+    public static final String CAKE_IMG_RESOURCE = "images/cake.png";
+    public static final String LIFE_IMG_RESOURCE = "images/life.png";
+    public static final int BONUS_RESPAWN_TICKS = 500;
+    public static final int BONUS_LIFETIME_MILLIS = 10000;
+
     public static final double GRAVITY = 9.8;
 }

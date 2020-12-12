@@ -4,7 +4,6 @@ import cz.cvut.fit.miadp.mvcgame.config.MvcGameConfig;
 import cz.cvut.fit.miadp.mvcgame.model.coordinations.Position;
 import cz.cvut.fit.miadp.mvcgame.model.object.LifetimeLimitedGameObject;
 import cz.cvut.fit.miadp.mvcgame.strategy.MovingStrategy;
-import cz.cvut.fit.miadp.mvcgame.visitor.GameObjectVisitor;
 
 @SuppressWarnings("WeakerAccess")
 public abstract class AbstractMissile extends LifetimeLimitedGameObject {
@@ -22,11 +21,6 @@ public abstract class AbstractMissile extends LifetimeLimitedGameObject {
 
     public void move() {
         movingStrategy.updatePosition(this);
-    }
-
-    @Override
-    public void acceptVisitor(GameObjectVisitor renderer) {
-        renderer.visitMissile(this);
     }
 
     public double getAngle() {

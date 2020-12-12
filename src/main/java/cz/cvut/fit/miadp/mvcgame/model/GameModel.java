@@ -3,8 +3,12 @@ package cz.cvut.fit.miadp.mvcgame.model;
 import cz.cvut.fit.miadp.mvcgame.MvcGame;
 import cz.cvut.fit.miadp.mvcgame.abstract_factory.AbstractGameObjectFactory;
 import cz.cvut.fit.miadp.mvcgame.abstract_factory.BasicGameObjectFactory;
+import cz.cvut.fit.miadp.mvcgame.config.MvcGameConfig;
+import cz.cvut.fit.miadp.mvcgame.factory.BonusFactory;
 import cz.cvut.fit.miadp.mvcgame.model.coordinations.CannonDirection;
 import cz.cvut.fit.miadp.mvcgame.model.object.GameObject;
+import cz.cvut.fit.miadp.mvcgame.model.object.bonus.AbstractBonus;
+import cz.cvut.fit.miadp.mvcgame.model.object.bonus.Cake;
 import cz.cvut.fit.miadp.mvcgame.model.object.cannon.AbstractCannon;
 import cz.cvut.fit.miadp.mvcgame.model.object.missile.AbstractMissile;
 import cz.cvut.fit.miadp.mvcgame.observer.CannonObserver;
@@ -12,20 +16,25 @@ import cz.cvut.fit.miadp.mvcgame.observer.GUIObservable;
 import cz.cvut.fit.miadp.mvcgame.observer.GUIObserver;
 import cz.cvut.fit.miadp.mvcgame.state.CannonStateHolder;
 import cz.cvut.fit.miadp.mvcgame.util.Log;
+import cz.cvut.fit.miadp.mvcgame.util.Timer;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class GameModel implements GUIObservable, CannonObserver, GameModelInterface {
     private AbstractCannon cannon;
     private List<AbstractMissile> missiles;
+    private List<AbstractBonus> bonuses;
 
     private List<GUIObserver> observers;
     private AbstractGameObjectFactory objectFactory;
+    private BonusFactory bonusFactory;
 
     private CannonStateHolder cannonState;
 
     private long ticks = 0;
+    private long showBonus = 0;
     private long upgradeCannon = 0;
 
     public GameModel() {
@@ -34,6 +43,8 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
         cannon = objectFactory.createCannon();
         observers = new ArrayList<>();
         cannonState = new CannonStateHolder(cannon, this);
+        bonusFactory = new BonusFactory();
+        bonuses = new ArrayList<>();
     }
 
     public void moveCannon(CannonDirection direction) {
@@ -85,7 +96,7 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
     public void upgradeCannon() {
         if(ticks - upgradeCannon > 400) {
             upgradeCannon = ticks;
-            cannonState.upgrade();
+//            cannonState.upgrade();
         }
     }
 
@@ -93,13 +104,46 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
         List<GameObject> objects = new ArrayList<>();
         objects.add(cannon);
         objects.addAll(missiles);
+        objects.addAll(bonuses);
         return objects;
     }
 
     public void update() {
         moveMissiles();
         ticks++;
-        //moveBy enemies and other stuff
+        showBonus++;
+        Log.print(Long.toString(ticks));
+        controlBonuses();
+    }
+
+    private void controlBonuses() {
+        createBonus();
+        removeBonuses();
+        checkCollisions();
+    }
+
+    private void createBonus() {
+        if(showBonus > MvcGameConfig.BONUS_RESPAWN_TICKS) {
+            showBonus = 0;
+            bonuses.add(bonusFactory.createBonus());
+        }
+    }
+
+    private void removeBonuses() {
+        bonuses.removeIf(bonus -> bonus.getAge(Timer.Unit.MILLIS) > MvcGameConfig.BONUS_LIFETIME_MILLIS);
+    }
+
+    private void checkCollisions() {
+        missiles.forEach(missile -> {
+            Iterator<AbstractBonus> iter = bonuses.iterator();
+            while(iter.hasNext()) {
+                AbstractBonus bonus = iter.next();
+                if(missile.collidesWith(bonus)) {
+                    if(bonus instanceof Cake) cannonState.upgrade();
+                    iter.remove();
+                }
+            }
+        });
     }
 
     private void moveMissiles() {

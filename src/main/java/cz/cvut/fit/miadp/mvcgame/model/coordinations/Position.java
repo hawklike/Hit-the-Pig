@@ -25,8 +25,4 @@ public class Position {
         this.posX = x;
     }
 
-    public void add(Vector v) {
-        posX += v.getDX();
-        posY += v.getDY();
-    }
 }
