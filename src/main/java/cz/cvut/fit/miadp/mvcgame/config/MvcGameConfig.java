@@ -4,6 +4,9 @@ public class MvcGameConfig {
     public static final int MAX_X = 1280;
     public static final int MAX_Y = 720;
 
+    public static final int GAMEINFO_POSX = 32;
+    public static final int GAMEINFO_POSY = 32;
+
     public static final String CANNON_IMG_RESOURCE = "images/cannon.png";
     public static final double CANNON_POWER_DELAY_MILLIS = 500;
     public static final int CANNON_POWER_STEP = 1;

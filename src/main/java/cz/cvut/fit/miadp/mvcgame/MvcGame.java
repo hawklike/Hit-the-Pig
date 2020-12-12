@@ -11,8 +11,6 @@ import javafx.scene.input.KeyCode;
 
 import java.util.List;
 
-// in future, use Bridge to remove this dependency
-
 public class MvcGame {
 
     private GameModelInterface model;

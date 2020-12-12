@@ -1,13 +1,15 @@
 package cz.cvut.fit.miadp.mvcgame.bridge;
 
 import cz.cvut.fit.miadp.mvcgame.config.MvcGameConfig;
+import cz.cvut.fit.miadp.mvcgame.model.coordinations.Dimension;
 import cz.cvut.fit.miadp.mvcgame.model.coordinations.Position;
+import cz.cvut.fit.miadp.mvcgame.model.object.GameObject;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class JavaFxGraphics implements GameGraphicsImplementor {
 
-    protected GraphicsContext gc;
+    private GraphicsContext gc;
 
     public JavaFxGraphics(GraphicsContext gc) {
         this.gc = gc;
@@ -33,5 +35,11 @@ public class JavaFxGraphics implements GameGraphicsImplementor {
 
     public void clear() {
         this.gc.clearRect(0, 0, MvcGameConfig.MAX_X, MvcGameConfig.MAX_Y);
+    }
+
+    @Override
+    public Dimension getDimension(GameObject object) {
+        Image img = new Image(object.getImgResource());
+        return new Dimension(img.getWidth(), img.getHeight());
     }
 }

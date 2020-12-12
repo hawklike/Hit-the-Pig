@@ -1,8 +1,11 @@
 package cz.cvut.fit.miadp.mvcgame.view;
 
 import cz.cvut.fit.miadp.mvcgame.bridge.GameGraphicsInterface;
+import cz.cvut.fit.miadp.mvcgame.config.MvcGameConfig;
 import cz.cvut.fit.miadp.mvcgame.controller.GameController;
 import cz.cvut.fit.miadp.mvcgame.model.GameModelInterface;
+import cz.cvut.fit.miadp.mvcgame.model.coordinations.Position;
+import cz.cvut.fit.miadp.mvcgame.model.object.cannon.CannonConfiguration;
 import cz.cvut.fit.miadp.mvcgame.observer.GUIObserver;
 import cz.cvut.fit.miadp.mvcgame.visitor.GameObjectRenderer;
 
@@ -42,7 +45,19 @@ public class GameView implements GUIObserver {
     private void render() {
         if(gr == null) return;
         gr.clear();
+        renderText();
         model.getGameObjects().forEach(gameObject -> gameObject.acceptVisitor(renderer));
+    }
+
+    private void renderText() {
+        CannonConfiguration cannon = model.getCannonConfig();
+        double angle = cannon.getAngle();
+        int power = cannon.getPower();
+        if(power < MvcGameConfig.CANNON_MIN_POWER) power = MvcGameConfig.CANNON_MIN_POWER;
+        if(power > MvcGameConfig.CANNON_MAX_POWER) power = MvcGameConfig.CANNON_MAX_POWER;
+        //todo get lives
+        gr.drawText("Angle: " + angle + "\tPower: " + power, new Position(MvcGameConfig.GAMEINFO_POSX, MvcGameConfig.GAMEINFO_POSY));
+
     }
 
 }

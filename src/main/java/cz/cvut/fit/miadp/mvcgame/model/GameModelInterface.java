@@ -3,6 +3,7 @@ package cz.cvut.fit.miadp.mvcgame.model;
 import cz.cvut.fit.miadp.mvcgame.model.coordinations.CannonDirection;
 import cz.cvut.fit.miadp.mvcgame.model.object.GameObject;
 import cz.cvut.fit.miadp.mvcgame.model.object.cannon.AbstractCannon;
+import cz.cvut.fit.miadp.mvcgame.model.object.cannon.CannonConfiguration;
 import cz.cvut.fit.miadp.mvcgame.observer.GUIObserver;
 
 import java.util.List;
@@ -19,6 +20,8 @@ public interface GameModelInterface {
     void upgradeCannon();
 
     List<GameObject> getGameObjects();
+
+    CannonConfiguration getCannonConfig();
 
     void update();
 

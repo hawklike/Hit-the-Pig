@@ -1,10 +1,12 @@
 package cz.cvut.fit.miadp.mvcgame.bridge;
 
+import cz.cvut.fit.miadp.mvcgame.model.coordinations.Dimension;
 import cz.cvut.fit.miadp.mvcgame.model.coordinations.Position;
+import cz.cvut.fit.miadp.mvcgame.model.object.GameObject;
 
 public class GameGraphics implements GameGraphicsInterface {
 
-    GameGraphicsImplementor implementor;
+    private GameGraphicsImplementor implementor;
 
     public GameGraphics(GameGraphicsImplementor implementor) {
         this.implementor = implementor;
@@ -45,6 +47,11 @@ public class GameGraphics implements GameGraphicsInterface {
     @Override
     public void clear() {
         this.implementor.clear();
+    }
+
+    @Override
+    public Dimension getDimension(GameObject object) {
+        return implementor.getDimension(object);
     }
 
 }

@@ -10,6 +10,7 @@ import cz.cvut.fit.miadp.mvcgame.model.object.GameObject;
 import cz.cvut.fit.miadp.mvcgame.model.object.bonus.AbstractBonus;
 import cz.cvut.fit.miadp.mvcgame.model.object.bonus.Cake;
 import cz.cvut.fit.miadp.mvcgame.model.object.cannon.AbstractCannon;
+import cz.cvut.fit.miadp.mvcgame.model.object.cannon.CannonConfiguration;
 import cz.cvut.fit.miadp.mvcgame.model.object.missile.AbstractMissile;
 import cz.cvut.fit.miadp.mvcgame.observer.CannonObserver;
 import cz.cvut.fit.miadp.mvcgame.observer.GUIObservable;
@@ -93,10 +94,11 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
         }
     }
 
+    //todo remove this function
     public void upgradeCannon() {
         if(ticks - upgradeCannon > 400) {
             upgradeCannon = ticks;
-//            cannonState.upgrade();
+            cannonState.upgrade();
         }
     }
 
@@ -106,6 +108,10 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
         objects.addAll(missiles);
         objects.addAll(bonuses);
         return objects;
+    }
+
+    public CannonConfiguration getCannonConfig() {
+        return new CannonConfiguration(cannon.getAngle(), cannon.getPower());
     }
 
     public void update() {
@@ -155,7 +161,7 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
     private void removeMissiles() {
         missiles.removeIf(missile -> missile.getPosition().getX() > MvcGame.getWindowWidth() ||
                 missile.getPosition().getY() > MvcGame.getWindowHeight());
-//        Log.print("Active missiles: " + missiles.size());
+        Log.print("Active missiles: " + missiles.size());
     }
 
     @Override

@@ -9,9 +9,9 @@ import cz.cvut.fit.miadp.mvcgame.visitor.Visitable;
 import javafx.geometry.Rectangle2D;
 
 public abstract class GameObject implements Visitable, Movable {
-    private Position position;
-    private double width;
-    private double height;
+    protected Position position;
+    protected double width;
+    protected double height;
 
     private final String imgResource;
 

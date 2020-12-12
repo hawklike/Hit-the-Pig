@@ -4,6 +4,7 @@ import cz.cvut.fit.miadp.mvcgame.model.GameModelInterface;
 import cz.cvut.fit.miadp.mvcgame.model.coordinations.CannonDirection;
 import cz.cvut.fit.miadp.mvcgame.model.object.GameObject;
 import cz.cvut.fit.miadp.mvcgame.model.object.cannon.AbstractCannon;
+import cz.cvut.fit.miadp.mvcgame.model.object.cannon.CannonConfiguration;
 import cz.cvut.fit.miadp.mvcgame.observer.GUIObserver;
 
 import java.util.List;
@@ -43,6 +44,11 @@ public class GameModelProxy implements GameModelInterface {
     @Override
     public List<GameObject> getGameObjects() {
         return subject.getGameObjects();
+    }
+
+    @Override
+    public CannonConfiguration getCannonConfig() {
+        return subject.getCannonConfig();
     }
 
     @Override
