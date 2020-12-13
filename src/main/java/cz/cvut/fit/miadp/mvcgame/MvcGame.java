@@ -24,11 +24,11 @@ public class MvcGame {
     }
 
     public void processPressedKeys(List<KeyCode> pressedKeysCodes) {
-        controller.handleUserInput(pressedKeysCodes);
+        if(controller.handleUserInput(pressedKeysCodes, model.getLives())) init();
     }
 
     public void update() {
-        model.update();
+        if(model.getLives() > 0) model.update();
     }
 
     public void render(GameGraphicsInterface gr) {

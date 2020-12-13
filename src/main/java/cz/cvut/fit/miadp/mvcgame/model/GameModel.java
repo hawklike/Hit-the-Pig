@@ -212,7 +212,10 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
 
     private void moveEnemies() {
         int acc;
-        if(lives > MvcGameConfig.HARDER_DIFFICULTY_LIVES_BOUND || destroyedEnemies > MvcGameConfig.HARDER_DIFFICULTY_DESTROYED_ENEMIES_BOUND) acc = 1;
+        if(lives > MvcGameConfig.ULTRA_HARD_DIFFICULTY_LIVES_BOUND || destroyedEnemies > MvcGameConfig.ULTRA_HARD_DIFFICULTY_DESTROYED_ENEMIES_BOUND)
+            acc = 2;
+        else if(lives > MvcGameConfig.HARDER_DIFFICULTY_LIVES_BOUND || destroyedEnemies > MvcGameConfig.HARDER_DIFFICULTY_DESTROYED_ENEMIES_BOUND)
+            acc = 1;
         else acc = 0;
         enemies.forEach(enemy -> enemy.move(acc));
     }

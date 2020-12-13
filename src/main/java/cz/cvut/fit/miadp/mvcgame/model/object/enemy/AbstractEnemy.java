@@ -32,7 +32,9 @@ public abstract class AbstractEnemy extends GameObject {
         if(lastHit == null || lastHit.getTime(Timer.Unit.MILLIS) > MvcGameConfig.ENEMY_HIT_IMMORTALITY_MILLIS) {
             lastHit = new Timer();
             lives -= power;
+            int previousSpeed = speed;
             speed /= 2;
+            if(speed <= 0) speed = previousSpeed;
             if(getLiveRatio() < MvcGameConfig.SHOW_DAMAGED_ENEMY_LIVES_RATIO) imgResource = hitImgResource;
         }
     }

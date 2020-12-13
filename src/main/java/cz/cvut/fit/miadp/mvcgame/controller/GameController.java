@@ -14,7 +14,7 @@ public class GameController {
         this.model = model;
     }
 
-    public void handleUserInput(List<KeyCode> pressedKeysCodes) {
+    public boolean handleUserInput(List<KeyCode> pressedKeysCodes, int lives) {
         for(KeyCode code : pressedKeysCodes) {
             switch(code) {
                 case UP:
@@ -38,7 +38,12 @@ public class GameController {
                 case W:
                     model.aimCannon(CannonDirection.DOWN);
                     break;
+                case F:
+                    return lives == 0;
+                default:
+                    return false;
             }
         }
+        return false;
     }
 }

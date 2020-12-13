@@ -12,8 +12,8 @@ public class BonusFactory {
     public AbstractBonus createBonus() {
         return createBonus(new Randomizer().createPosition(
                 MvcGameConfig.MAX_X / 5,
-                MvcGameConfig.MAX_X - 64,
-                64, MvcGameConfig.MAX_Y - 64
+                MvcGameConfig.MAX_X / 2 + MvcGameConfig.MAX_X / 4,
+                MvcGameConfig.HORIZON_POSY, MvcGameConfig.MAX_Y - 64
                 )
         );
     }

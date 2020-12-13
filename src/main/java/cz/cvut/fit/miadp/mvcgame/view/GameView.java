@@ -48,6 +48,7 @@ public class GameView implements GUIObserver {
         if(gr == null) return;
         gr.clear();
         renderText();
+        if(model.getLives() == 0) gameOver();
         model.getGameObjects().forEach(gameObject -> gameObject.acceptVisitor(renderer));
     }
 
@@ -62,6 +63,11 @@ public class GameView implements GUIObserver {
                 "Lives: " + lives + "  Destroyed: " + destroyedEnemies + "  Power: " + power + "  Angle: " + angle,
                 new Position(MvcGameConfig.GAMEINFO_POSX, MvcGameConfig.GAMEINFO_POSY));
 
+    }
+
+    private void gameOver() {
+        gr.drawText("Game Over", new Position(MvcGameConfig.MAX_X / 2 - 32, 72));
+        gr.drawText("Press F to play again.", new Position(MvcGameConfig.MAX_X / 2 - 64, 96));
     }
 
 }
