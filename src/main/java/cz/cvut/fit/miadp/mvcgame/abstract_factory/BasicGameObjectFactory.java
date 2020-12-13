@@ -15,7 +15,7 @@ public class BasicGameObjectFactory implements AbstractGameObjectFactory {
     @Override
     public BasicEnemy createEnemy() {
         return new BasicEnemy(new Randomizer().createPosition(
-                MvcGameConfig.MAX_X / 5,
+                MvcGameConfig.MAX_X / 3,
                 MvcGameConfig.MAX_X - 64,
                 64, MvcGameConfig.MAX_Y - 64
         ));

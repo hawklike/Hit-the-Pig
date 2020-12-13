@@ -15,7 +15,7 @@ public class AdvancedGameObjectFactory implements AbstractGameObjectFactory {
     @Override
     public AdvancedEnemy createEnemy() {
         return new AdvancedEnemy(new Randomizer().createPosition(
-                MvcGameConfig.MAX_X / 3,
+                MvcGameConfig.MAX_X / 2,
                 MvcGameConfig.MAX_X - 64,
                 64, MvcGameConfig.MAX_Y - 64
         ));

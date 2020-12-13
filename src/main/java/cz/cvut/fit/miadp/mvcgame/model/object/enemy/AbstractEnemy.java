@@ -24,8 +24,8 @@ public abstract class AbstractEnemy extends GameObject {
         this.speed = speed;
     }
 
-    public void move() {
-        moveBy(new Vector(-1 * speed, 0));
+    public void move(int acc) {
+        moveBy(new Vector(-1 * (speed + acc), 0));
     }
 
     public void hit(int power) {

@@ -50,11 +50,11 @@ public abstract class AbstractCannon extends GameObject implements CannonState {
     public void move(CannonDirection direction) {
         switch(direction) {
             case UP:
-                if(position.getY() == 0) break;
+                if(position.getY() < MvcGameConfig.HORIZON_POSY) break;
                 moveBy(new Vector(0, -1 * speed));
                 break;
             case DOWN:
-                if(position.getY() + height == MvcGameConfig.MAX_Y) break;
+                if(position.getY() + height > MvcGameConfig.MAX_Y) break;
                 moveBy(new Vector(0, speed));
                 break;
         }

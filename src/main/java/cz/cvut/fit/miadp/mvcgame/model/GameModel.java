@@ -201,7 +201,7 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
 
     private void handleEnemies() {
         createEnemies();
-        enemies.forEach(AbstractEnemy::move);
+        moveEnemies();
         enemies.removeIf(enemy -> {
             if(enemy.getPosition().getX() < -enemy.getWidth()) {
                 lives--;
@@ -210,7 +210,15 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
         });
     }
 
+    private void moveEnemies() {
+        int acc;
+        if(lives > MvcGameConfig.HARDER_DIFFICULTY_LIVES_BOUND || destroyedEnemies > MvcGameConfig.HARDER_DIFFICULTY_DESTROYED_ENEMIES_BOUND) acc = 1;
+        else acc = 0;
+        enemies.forEach(enemy -> enemy.move(acc));
+    }
+
     private void createEnemies() {
+        if(enemies.isEmpty()) createEnemy();
         if(enemies.size() <= MvcGameConfig.MAX_ENEMIES) {
             if(ticks - createEnemies >= delayBetweenEnemies) {
                 createEnemies = ticks;
