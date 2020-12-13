@@ -13,7 +13,7 @@ public abstract class GameObject implements Visitable, Movable {
     protected double width;
     protected double height;
 
-    private final String imgResource;
+    protected String imgResource;
 
     protected GameObject(String imgResource, Position position) {
         this.imgResource = imgResource;

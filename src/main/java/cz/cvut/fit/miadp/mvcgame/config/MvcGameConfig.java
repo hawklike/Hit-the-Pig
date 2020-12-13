@@ -22,7 +22,7 @@ public class MvcGameConfig {
     public static final int BASIC_CANNON_SHOOT_DELAY_MILLIS = 1500;
 
     public static final int PRO_CANNON_MOVE_STEP = 6;
-    public static final int PRO_CANNON_POWER = 10;
+    public static final int PRO_CANNON_POWER = 15;
     public static final int PRO_CANNON_SHOOT_DELAY_MILLIS = 500;
     public static final int PRO_CANNON_SHOOT_TIME = 5000;
 
@@ -31,7 +31,18 @@ public class MvcGameConfig {
     public static final String CAKE_IMG_RESOURCE = "images/cake.png";
     public static final String LIFE_IMG_RESOURCE = "images/life.png";
     public static final int BONUS_RESPAWN_TICKS = 2000;
-    public static final int BONUS_LIFETIME_MILLIS = 3000;
+    public static final int BONUS_LIFETIME_MILLIS = 5000;
+
+    public static final String ENEMY_DAMAGED_IMG_RESOURCE = "/images/collision.png";
+    public static final double SHOW_DAMAGED_ENEMY_LIVES_RATIO = 0.55;
+
+    public static final String BASIC_ENEMY_IMG_RESOURCE = "/images/enemy1.png";
+    public static final int BASIC_ENEMY_MAX_LIVES = 10;
+    public static final int BASIC_ENEMY_SPEED = 1;
+
+    public static final String ADVANCED_ENEMY_IMG_RESOURCE = "/images/enemy2.png";
+    public static final int ADVANCED_ENEMY_MAX_LIVES = 30;
+    public static final int ADVANCED_ENEMY_SPEED = 2;
 
     public static final double GRAVITY = 9.8;
 }

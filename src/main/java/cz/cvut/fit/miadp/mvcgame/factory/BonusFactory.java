@@ -5,6 +5,7 @@ import cz.cvut.fit.miadp.mvcgame.model.coordinations.Position;
 import cz.cvut.fit.miadp.mvcgame.model.object.bonus.AbstractBonus;
 import cz.cvut.fit.miadp.mvcgame.model.object.bonus.Cake;
 import cz.cvut.fit.miadp.mvcgame.model.object.bonus.ExtraLife;
+import cz.cvut.fit.miadp.mvcgame.util.Randomizer;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -15,9 +16,12 @@ public class BonusFactory {
     }
 
     public AbstractBonus createBonus(int random) {
-        int posX = ThreadLocalRandom.current().nextInt(MvcGameConfig.MAX_X / 5, MvcGameConfig.MAX_X - 64);
-        int posY = ThreadLocalRandom.current().nextInt(64, MvcGameConfig.MAX_Y - 64);
-        return createBonus(random, new Position(posX, posY));
+        return createBonus(random,
+                new Randomizer().createPosition(
+                        MvcGameConfig.MAX_X / 5,
+                        MvcGameConfig.MAX_X - 64,
+                        64, MvcGameConfig.MAX_Y - 64)
+        );
     }
 
     public AbstractBonus createBonus(int random, Position position) {
