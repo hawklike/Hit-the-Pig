@@ -42,7 +42,7 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
 
     private Randomizer randomizer;
 
-    private int lives = 3;
+    private int lives = MvcGameConfig.LIVES;
     private int destroyedEnemies = 0;
 
     private long ticks = 0;
@@ -156,6 +156,7 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
     }
 
     private void createBonus() {
+        if(lives < 3) showBonus += 2;
         if(++showBonus > MvcGameConfig.BONUS_RESPAWN_TICKS) {
             showBonus = 0;
             bonuses.add(bonusFactory.createBonus());
