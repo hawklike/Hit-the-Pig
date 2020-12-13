@@ -2,6 +2,7 @@ package cz.cvut.fit.miadp.mvcgame.model;
 
 import cz.cvut.fit.miadp.mvcgame.MvcGame;
 import cz.cvut.fit.miadp.mvcgame.abstract_factory.AbstractGameObjectFactory;
+import cz.cvut.fit.miadp.mvcgame.abstract_factory.AdvancedGameObjectFactory;
 import cz.cvut.fit.miadp.mvcgame.abstract_factory.BasicGameObjectFactory;
 import cz.cvut.fit.miadp.mvcgame.config.MvcGameConfig;
 import cz.cvut.fit.miadp.mvcgame.factory.BonusFactory;
@@ -19,9 +20,13 @@ import cz.cvut.fit.miadp.mvcgame.observer.GUIObservable;
 import cz.cvut.fit.miadp.mvcgame.observer.GUIObserver;
 import cz.cvut.fit.miadp.mvcgame.state.CannonStateHolder;
 import cz.cvut.fit.miadp.mvcgame.util.Log;
+import cz.cvut.fit.miadp.mvcgame.util.Randomizer;
 import cz.cvut.fit.miadp.mvcgame.util.Timer;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 public class GameModel implements GUIObservable, CannonObserver, GameModelInterface {
     private AbstractCannon cannon;
@@ -35,6 +40,8 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
 
     private CannonStateHolder cannonState;
 
+    private Randomizer randomizer;
+
     private int lives = 3;
     private int destroyedEnemies = 0;
 
@@ -42,16 +49,20 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
     private long showBonus = 0;
     private long upgradeCannon = 0;
 
+    private long createEnemies = 0;
+    private int delayBetweenEnemies = MvcGameConfig.MAX_STEPS_BETWEEN_ENEMIES;
+
 
     public GameModel() {
-        missiles = new LinkedList<>();
+        randomizer = new Randomizer();
+        missiles = new ArrayList<>();
         objectFactory = new BasicGameObjectFactory();
         cannon = objectFactory.createCannon();
-        observers = new LinkedList<>();
+        observers = new ArrayList<>();
         cannonState = new CannonStateHolder(cannon, this);
         bonusFactory = new BonusFactory();
-        bonuses = new LinkedList<>();
-        enemies = new LinkedList<>(Arrays.asList(objectFactory.createEnemy(), objectFactory.createEnemy()));
+        bonuses = new ArrayList<>();
+        enemies = new ArrayList<>(Arrays.asList(objectFactory.createEnemy(), objectFactory.createEnemy()));
     }
 
     public void moveCannon(CannonDirection direction) {
@@ -131,7 +142,7 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
 
     public void update() {
         ticks++;
-//        Log.print(ticks);
+        Log.print(ticks);
         handleMissiles();
         handleBonuses();
         handleEnemies();
@@ -171,6 +182,7 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
     }
 
     private void enemyCollision(AbstractMissile missile) {
+        boolean destroyed = false;
         Iterator<AbstractEnemy> iter = enemies.iterator();
         while(iter.hasNext()) {
             AbstractEnemy enemy = iter.next();
@@ -179,19 +191,38 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
                 if(enemy.isDead()) {
                     destroyedEnemies++;
                     iter.remove();
+                    destroyed = true;
                 }
             }
         }
+        if(destroyed && randomizer.flipCoin()) createEnemy();
     }
 
     private void handleEnemies() {
         createEnemies();
         enemies.forEach(AbstractEnemy::move);
-        enemies.removeIf(enemy -> enemy.getPosition().getX() < -enemy.getWidth());
+        enemies.removeIf(enemy -> {
+            if(enemy.getPosition().getX() < -enemy.getWidth()) {
+                lives--;
+                return true;
+            } else return false;
+        });
     }
 
     private void createEnemies() {
+        if(enemies.size() <= MvcGameConfig.MAX_ENEMIES) {
+            if(ticks - createEnemies >= delayBetweenEnemies) {
+                createEnemies = ticks;
+                if(delayBetweenEnemies > MvcGameConfig.MIN_STEPS_BETWEEN_ENEMIES) delayBetweenEnemies -= 100;
+                createEnemy();
+            }
+        }
+    }
 
+    private void createEnemy() {
+        if(randomizer.flipCoin()) objectFactory = new AdvancedGameObjectFactory();
+        else objectFactory = new BasicGameObjectFactory();
+        enemies.add(objectFactory.createEnemy());
     }
 
     private void handleMissiles() {
