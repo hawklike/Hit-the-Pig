@@ -57,8 +57,9 @@ public class GameView implements GUIObserver {
         String angle = angleFormat.format(cannon.getAngle());
         int power = cannon.getPower();
         int lives = model.getLives();
+        int destroyedEnemies = model.getDestroyedEnemies();
         gr.drawText(
-                "Lives: " + lives + "  Power: " + power + "  Angle: " + angle,
+                "Lives: " + lives + "  Destroyed: " + destroyedEnemies + "  Power: " + power + "  Angle: " + angle,
                 new Position(MvcGameConfig.GAMEINFO_POSX, MvcGameConfig.GAMEINFO_POSY));
 
     }

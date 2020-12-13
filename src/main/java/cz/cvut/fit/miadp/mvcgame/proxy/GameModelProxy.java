@@ -57,6 +57,11 @@ public class GameModelProxy implements GameModelInterface {
     }
 
     @Override
+    public int getDestroyedEnemies() {
+        return subject.getDestroyedEnemies();
+    }
+
+    @Override
     public void update() {
         subject.update();
     }

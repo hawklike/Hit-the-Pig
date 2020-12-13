@@ -4,12 +4,15 @@ import cz.cvut.fit.miadp.mvcgame.config.MvcGameConfig;
 import cz.cvut.fit.miadp.mvcgame.model.coordinations.Position;
 import cz.cvut.fit.miadp.mvcgame.model.coordinations.Vector;
 import cz.cvut.fit.miadp.mvcgame.model.object.GameObject;
+import cz.cvut.fit.miadp.mvcgame.util.Timer;
 
 public class AbstractEnemy extends GameObject {
 
     protected int maxLives;
     protected int speed;
     protected int lives;
+
+    private Timer lastHit;
 
     protected String hitImgResource;
 
@@ -26,8 +29,11 @@ public class AbstractEnemy extends GameObject {
     }
 
     public void hit(int power) {
-        lives -= power;
-        if(getLiveRatio() < MvcGameConfig.SHOW_DAMAGED_ENEMY_LIVES_RATIO) imgResource = hitImgResource;
+        if(lastHit == null || lastHit.getTime(Timer.Unit.MILLIS) > MvcGameConfig.ENEMY_HIT_IMMORTALITY_MILLIS) {
+            lastHit = new Timer();
+            lives -= power;
+            if(getLiveRatio() < MvcGameConfig.SHOW_DAMAGED_ENEMY_LIVES_RATIO) imgResource = hitImgResource;
+        }
     }
 
     public boolean isDead() {

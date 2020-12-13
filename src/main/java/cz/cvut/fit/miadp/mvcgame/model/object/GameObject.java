@@ -57,4 +57,12 @@ public abstract class GameObject implements Visitable, Movable {
     public boolean collidesWith(GameObject otherObject) {
         return otherObject.getBoundary().intersects(getBoundary());
     }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public double getHeight() {
+        return height;
+    }
 }

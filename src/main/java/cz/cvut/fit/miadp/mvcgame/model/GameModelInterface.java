@@ -25,6 +25,8 @@ public interface GameModelInterface {
 
     int getLives();
 
+    int getDestroyedEnemies();
+
     void update();
 
     void registerObserver(GUIObserver observer);

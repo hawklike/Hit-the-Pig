@@ -30,4 +30,8 @@ public abstract class AbstractMissile extends LifetimeLimitedGameObject {
     public int getVelocity() {
         return velocity;
     }
+
+    public int getPower() {
+        return velocity;
+    }
 }

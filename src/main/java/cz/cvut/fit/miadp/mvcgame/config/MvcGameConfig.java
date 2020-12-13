@@ -35,6 +35,7 @@ public class MvcGameConfig {
 
     public static final String ENEMY_DAMAGED_IMG_RESOURCE = "/images/collision.png";
     public static final double SHOW_DAMAGED_ENEMY_LIVES_RATIO = 0.55;
+    public static final int ENEMY_HIT_IMMORTALITY_MILLIS = 250;
 
     public static final String BASIC_ENEMY_IMG_RESOURCE = "/images/enemy1.png";
     public static final int BASIC_ENEMY_MAX_LIVES = 10;

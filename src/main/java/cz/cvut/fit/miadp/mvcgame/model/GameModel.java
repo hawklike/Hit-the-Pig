@@ -12,6 +12,7 @@ import cz.cvut.fit.miadp.mvcgame.model.object.bonus.Cake;
 import cz.cvut.fit.miadp.mvcgame.model.object.bonus.ExtraLife;
 import cz.cvut.fit.miadp.mvcgame.model.object.cannon.AbstractCannon;
 import cz.cvut.fit.miadp.mvcgame.model.object.cannon.CannonConfiguration;
+import cz.cvut.fit.miadp.mvcgame.model.object.enemy.AbstractEnemy;
 import cz.cvut.fit.miadp.mvcgame.model.object.missile.AbstractMissile;
 import cz.cvut.fit.miadp.mvcgame.observer.CannonObserver;
 import cz.cvut.fit.miadp.mvcgame.observer.GUIObservable;
@@ -20,14 +21,13 @@ import cz.cvut.fit.miadp.mvcgame.state.CannonStateHolder;
 import cz.cvut.fit.miadp.mvcgame.util.Log;
 import cz.cvut.fit.miadp.mvcgame.util.Timer;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class GameModel implements GUIObservable, CannonObserver, GameModelInterface {
     private AbstractCannon cannon;
     private List<AbstractMissile> missiles;
     private List<AbstractBonus> bonuses;
+    private List<AbstractEnemy> enemies;
 
     private List<GUIObserver> observers;
     private AbstractGameObjectFactory objectFactory;
@@ -36,19 +36,22 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
     private CannonStateHolder cannonState;
 
     private int lives = 3;
+    private int destroyedEnemies = 0;
 
     private long ticks = 0;
     private long showBonus = 0;
     private long upgradeCannon = 0;
 
+
     public GameModel() {
-        missiles = new ArrayList<>();
+        missiles = new LinkedList<>();
         objectFactory = new BasicGameObjectFactory();
         cannon = objectFactory.createCannon();
-        observers = new ArrayList<>();
+        observers = new LinkedList<>();
         cannonState = new CannonStateHolder(cannon, this);
         bonusFactory = new BonusFactory();
-        bonuses = new ArrayList<>();
+        bonuses = new LinkedList<>();
+        enemies = new LinkedList<>(Arrays.asList(objectFactory.createEnemy(), objectFactory.createEnemy()));
     }
 
     public void moveCannon(CannonDirection direction) {
@@ -110,6 +113,7 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
         objects.add(cannon);
         objects.addAll(missiles);
         objects.addAll(bonuses);
+        objects.addAll(enemies);
         return objects;
     }
 
@@ -121,55 +125,79 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
         return lives;
     }
 
-    public void update() {
-        moveMissiles();
-        ticks++;
-        showBonus++;
-        Log.print(Long.toString(ticks));
-        controlBonuses();
+    public int getDestroyedEnemies() {
+        return destroyedEnemies;
     }
 
-    private void controlBonuses() {
-        createBonus();
-        removeBonuses();
+    public void update() {
+        ticks++;
+//        Log.print(ticks);
+        handleMissiles();
+        handleBonuses();
+        handleEnemies();
         checkCollisions();
+        notifyObservers();
+    }
+
+    private void handleBonuses() {
+        createBonus();
+        bonuses.removeIf(bonus -> bonus.getAge(Timer.Unit.MILLIS) > MvcGameConfig.BONUS_LIFETIME_MILLIS);
     }
 
     private void createBonus() {
-        if(showBonus > MvcGameConfig.BONUS_RESPAWN_TICKS) {
+        if(++showBonus > MvcGameConfig.BONUS_RESPAWN_TICKS) {
             showBonus = 0;
             bonuses.add(bonusFactory.createBonus());
         }
     }
 
-    private void removeBonuses() {
-        bonuses.removeIf(bonus -> bonus.getAge(Timer.Unit.MILLIS) > MvcGameConfig.BONUS_LIFETIME_MILLIS);
-    }
-
     private void checkCollisions() {
         missiles.forEach(missile -> {
-            Iterator<AbstractBonus> iter = bonuses.iterator();
-            while(iter.hasNext()) {
-                AbstractBonus bonus = iter.next();
-                if(missile.collidesWith(bonus)) {
-                    if(bonus instanceof Cake) cannonState.upgrade();
-                    else if(bonus instanceof ExtraLife) lives++;
-                    iter.remove();
-                }
-            }
+            bonusCollision(missile);
+            enemyCollision(missile);
         });
     }
 
-    private void moveMissiles() {
-        missiles.forEach(AbstractMissile::move);
-        removeMissiles();
-        notifyObservers();
+    private void bonusCollision(AbstractMissile missile) {
+        Iterator<AbstractBonus> iter = bonuses.iterator();
+        while(iter.hasNext()) {
+            AbstractBonus bonus = iter.next();
+            if(missile.collidesWith(bonus)) {
+                if(bonus instanceof Cake) cannonState.upgrade();
+                else if(bonus instanceof ExtraLife) lives++;
+                iter.remove();
+            }
+        }
     }
 
-    private void removeMissiles() {
+    private void enemyCollision(AbstractMissile missile) {
+        Iterator<AbstractEnemy> iter = enemies.iterator();
+        while(iter.hasNext()) {
+            AbstractEnemy enemy = iter.next();
+            if(missile.collidesWith(enemy)) {
+                enemy.hit(missile.getPower());
+                if(enemy.isDead()) {
+                    destroyedEnemies++;
+                    iter.remove();
+                }
+            }
+        }
+    }
+
+    private void handleEnemies() {
+        createEnemies();
+        enemies.forEach(AbstractEnemy::move);
+        enemies.removeIf(enemy -> enemy.getPosition().getX() < -enemy.getWidth());
+    }
+
+    private void createEnemies() {
+
+    }
+
+    private void handleMissiles() {
+        missiles.forEach(AbstractMissile::move);
         missiles.removeIf(missile -> missile.getPosition().getX() > MvcGame.getWindowWidth() ||
                 missile.getPosition().getY() > MvcGame.getWindowHeight());
-        Log.print("Active missiles: " + missiles.size());
     }
 
     @Override
