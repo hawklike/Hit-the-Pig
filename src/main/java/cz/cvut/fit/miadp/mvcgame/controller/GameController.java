@@ -38,6 +38,9 @@ public class GameController {
                 case W:
                     model.aimCannon(CannonDirection.DOWN);
                     break;
+                case P:
+                    model.upgradeCannon();
+                    break;
                 case F:
                     return lives == 0;
                 default:

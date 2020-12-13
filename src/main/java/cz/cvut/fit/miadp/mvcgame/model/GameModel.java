@@ -111,7 +111,6 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
         }
     }
 
-    //todo remove this function
     public void upgradeCannon() {
         if(ticks - upgradeCannon > 400) {
             upgradeCannon = ticks;
@@ -142,7 +141,6 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
 
     public void update() {
         ticks++;
-        Log.print(ticks);
         handleMissiles();
         handleBonuses();
         handleEnemies();
