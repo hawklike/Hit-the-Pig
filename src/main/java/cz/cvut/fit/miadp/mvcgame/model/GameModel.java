@@ -9,6 +9,7 @@ import cz.cvut.fit.miadp.mvcgame.model.coordinations.CannonDirection;
 import cz.cvut.fit.miadp.mvcgame.model.object.GameObject;
 import cz.cvut.fit.miadp.mvcgame.model.object.bonus.AbstractBonus;
 import cz.cvut.fit.miadp.mvcgame.model.object.bonus.Cake;
+import cz.cvut.fit.miadp.mvcgame.model.object.bonus.ExtraLife;
 import cz.cvut.fit.miadp.mvcgame.model.object.cannon.AbstractCannon;
 import cz.cvut.fit.miadp.mvcgame.model.object.cannon.CannonConfiguration;
 import cz.cvut.fit.miadp.mvcgame.model.object.missile.AbstractMissile;
@@ -33,6 +34,8 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
     private BonusFactory bonusFactory;
 
     private CannonStateHolder cannonState;
+
+    private int lives = 3;
 
     private long ticks = 0;
     private long showBonus = 0;
@@ -114,6 +117,10 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
         return new CannonConfiguration(cannon.getAngle(), cannon.getPower());
     }
 
+    public int getLives() {
+        return lives;
+    }
+
     public void update() {
         moveMissiles();
         ticks++;
@@ -146,6 +153,7 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
                 AbstractBonus bonus = iter.next();
                 if(missile.collidesWith(bonus)) {
                     if(bonus instanceof Cake) cannonState.upgrade();
+                    else if(bonus instanceof ExtraLife) lives++;
                     iter.remove();
                 }
             }

@@ -23,6 +23,8 @@ public interface GameModelInterface {
 
     CannonConfiguration getCannonConfig();
 
+    int getLives();
+
     void update();
 
     void registerObserver(GUIObserver observer);

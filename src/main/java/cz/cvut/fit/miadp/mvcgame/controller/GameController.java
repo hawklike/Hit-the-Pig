@@ -33,7 +33,10 @@ public class GameController {
                     model.powerCannon(CannonDirection.DOWN);
                     break;
                 case Q:
-                    model.upgradeCannon();
+                    model.aimCannon(CannonDirection.UP);
+                    break;
+                case W:
+                    model.aimCannon(CannonDirection.DOWN);
                     break;
             }
         }

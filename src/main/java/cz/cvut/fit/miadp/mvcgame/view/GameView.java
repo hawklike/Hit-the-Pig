@@ -9,6 +9,8 @@ import cz.cvut.fit.miadp.mvcgame.model.object.cannon.CannonConfiguration;
 import cz.cvut.fit.miadp.mvcgame.observer.GUIObserver;
 import cz.cvut.fit.miadp.mvcgame.visitor.GameObjectRenderer;
 
+import java.text.DecimalFormat;
+
 public class GameView implements GUIObserver {
 
     private GameController controller;
@@ -51,12 +53,13 @@ public class GameView implements GUIObserver {
 
     private void renderText() {
         CannonConfiguration cannon = model.getCannonConfig();
-        double angle = cannon.getAngle();
+        DecimalFormat angleFormat = new DecimalFormat("#.##");
+        String angle = angleFormat.format(cannon.getAngle());
         int power = cannon.getPower();
-        if(power < MvcGameConfig.CANNON_MIN_POWER) power = MvcGameConfig.CANNON_MIN_POWER;
-        if(power > MvcGameConfig.CANNON_MAX_POWER) power = MvcGameConfig.CANNON_MAX_POWER;
-        //todo get lives
-        gr.drawText("Angle: " + angle + "\tPower: " + power, new Position(MvcGameConfig.GAMEINFO_POSX, MvcGameConfig.GAMEINFO_POSY));
+        int lives = model.getLives();
+        gr.drawText(
+                "Lives: " + lives + "  Power: " + power + "  Angle: " + angle,
+                new Position(MvcGameConfig.GAMEINFO_POSX, MvcGameConfig.GAMEINFO_POSY));
 
     }
 

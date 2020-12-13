@@ -63,9 +63,11 @@ public abstract class AbstractCannon extends GameObject implements CannonState {
     public void aim(CannonDirection direction) {
         switch(direction) {
             case UP:
+                if(angle + MvcGameConfig.CANNON_ANGLE_STEP > MvcGameConfig.CANNON_MAX_ANGLE) break;
                 angle += MvcGameConfig.CANNON_ANGLE_STEP;
                 break;
             case DOWN:
+                if(angle - MvcGameConfig.CANNON_ANGLE_STEP < MvcGameConfig.CANNON_MIN_ANGLE) break;
                 angle -= MvcGameConfig.CANNON_ANGLE_STEP;
                 break;
         }
@@ -77,9 +79,11 @@ public abstract class AbstractCannon extends GameObject implements CannonState {
             powerTimer = new Timer();
             switch(direction) {
                 case UP:
+                    if(power + MvcGameConfig.CANNON_POWER_STEP > MvcGameConfig.CANNON_MAX_POWER) break;
                     power += MvcGameConfig.CANNON_POWER_STEP;
                     break;
                 case DOWN:
+                    if(power - MvcGameConfig.CANNON_POWER_STEP < MvcGameConfig.CANNON_MIN_POWER) break;
                     power -= MvcGameConfig.CANNON_POWER_STEP;
                     break;
             }
@@ -89,9 +93,6 @@ public abstract class AbstractCannon extends GameObject implements CannonState {
     public AbstractMissile shoot() {
         if(shootTimer == null || shootTimer.getTime(Timer.Unit.MILLIS) > delayBetweenShots) {
             shootTimer = new Timer();
-
-            if(power < MvcGameConfig.CANNON_MIN_POWER) power = MvcGameConfig.CANNON_MIN_POWER;
-            if(power > MvcGameConfig.CANNON_MAX_POWER) power = MvcGameConfig.CANNON_MAX_POWER;
 
             return Missile.createInstance(getPosition(),
                     angle,

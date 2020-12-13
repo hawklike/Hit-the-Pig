@@ -14,6 +14,8 @@ public class MvcGameConfig {
     public static final double CANNON_ANGLE = 0;
     public static final int CANNON_MIN_POWER = 0;
     public static final int CANNON_MAX_POWER = 50;
+    public static final int CANNON_MAX_ANGLE = 90;
+    public static final int CANNON_MIN_ANGLE = -90;
 
     public static final int BASIC_CANNON_MOVE_STEP = 3;
     public static final int BASIC_CANNON_POWER = 10;
@@ -28,8 +30,8 @@ public class MvcGameConfig {
 
     public static final String CAKE_IMG_RESOURCE = "images/cake.png";
     public static final String LIFE_IMG_RESOURCE = "images/life.png";
-    public static final int BONUS_RESPAWN_TICKS = 500;
-    public static final int BONUS_LIFETIME_MILLIS = 10000;
+    public static final int BONUS_RESPAWN_TICKS = 2000;
+    public static final int BONUS_LIFETIME_MILLIS = 3000;
 
     public static final double GRAVITY = 9.8;
 }

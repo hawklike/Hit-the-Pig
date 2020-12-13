@@ -3,6 +3,7 @@ package cz.cvut.fit.miadp.mvcgame.state;
 import cz.cvut.fit.miadp.mvcgame.model.object.cannon.AbstractCannon;
 import cz.cvut.fit.miadp.mvcgame.observer.CannonObservable;
 import cz.cvut.fit.miadp.mvcgame.observer.CannonObserver;
+import cz.cvut.fit.miadp.mvcgame.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,23 +14,29 @@ public class CannonStateHolder implements CannonObservable {
 
     private List<CannonObserver> observers;
 
+    private int activeUpgrades;
+
     public CannonStateHolder(AbstractCannon initState, CannonObserver observer) {
+        activeUpgrades = 0;
         state = initState;
         observers = new ArrayList<>();
         registerObserver(observer);
     }
 
     public void upgrade() {
+        activeUpgrades++;
+        Log.print("active upgrades" + activeUpgrades);
         state.nextState(this);
     }
 
     public void upgrade(CannonState state) {
         this.state = state;
         notifyObservers();
-        upgrade();
+        state.nextState(this);
     }
 
     public void downgrade(CannonState state) {
+        if(--activeUpgrades > 0) return;
         this.state = state;
         notifyObservers();
     }
