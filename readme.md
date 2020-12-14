@@ -34,7 +34,7 @@ Keys *Q* and *W* - adjust slingshot angle
 Keys *A* and *S* - adjust slingshot power
 
 ## Rules
-Shot the pigs. Do not let them pass by your slingshot or you lose a life. Some pigs resist more hits than one. Furthermore, the game becomes more difficult within your improvement. But don't worry, you may collect some bonuses too. Adjust your slingshot angle, collect bonuses, shoot pigs and become the master beyond your imagination.
+Shot the pigs. Do not let them pass by your slingshot or you lose a life. Some pigs resist more hits than one. Furthermore, the game becomes more difficult with your improvement. But don't worry, you may collect some bonuses too. Adjust your slingshot angle, collect bonuses, shoot pigs and become the master beyond your imagination.
 
 ## Screenshots
 ![alt text](screenshots/gameplay1.png "Jop, that's the game")
