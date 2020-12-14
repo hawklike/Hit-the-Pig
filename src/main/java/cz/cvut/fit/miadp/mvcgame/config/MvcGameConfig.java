@@ -15,11 +15,14 @@ public class MvcGameConfig {
     public static final String GAMEOVER_SOUND_RESOURCE = "/sound/gameover.m4a";
     public static final int LIVES = 5;
 
+    public static final int HARD_DIFFICULTY_DESTROYED_ENEMIES_BOUND = 40;
+    public static final int EASY_ADVANCED_ENEMY_RESPAWN_PROBABILITY = 3; //1 : n
+
     public static final int HARDER_DIFFICULTY_LIVES_BOUND = 7;
-    public static final int HARDER_DIFFICULTY_DESTROYED_ENEMIES_BOUND = 50;
+    public static final int HARDER_DIFFICULTY_DESTROYED_ENEMIES_BOUND = 80;
 
     public static final int ULTRA_HARD_DIFFICULTY_LIVES_BOUND = 10;
-    public static final int ULTRA_HARD_DIFFICULTY_DESTROYED_ENEMIES_BOUND = 100;
+    public static final int ULTRA_HARD_DIFFICULTY_DESTROYED_ENEMIES_BOUND = 150;
 
     public static final String CANNON_IMG_RESOURCE = "images/new/cannon.png";
     public static final String CANNON_SOUND_RESOURCE = "/sound/cannon.m4a";

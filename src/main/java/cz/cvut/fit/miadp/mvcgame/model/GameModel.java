@@ -243,9 +243,13 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
     }
 
     private void createEnemy() {
-        if(randomizer.flipCoin()) objectFactory = new AdvancedGameObjectFactory();
-        else objectFactory = new BasicGameObjectFactory();
-        enemies.add(objectFactory.createEnemy());
+        if(destroyedEnemies < MvcGameConfig.HARD_DIFFICULTY_DESTROYED_ENEMIES_BOUND) {
+            if(randomizer.oneTo(MvcGameConfig.EASY_ADVANCED_ENEMY_RESPAWN_PROBABILITY)) objectFactory = new AdvancedGameObjectFactory();
+            else objectFactory = new BasicGameObjectFactory();
+        } else {
+            if(randomizer.flipCoin()) objectFactory = new AdvancedGameObjectFactory();
+            else objectFactory = new BasicGameObjectFactory();
+        }
     }
 
     private void handleMissiles() {
