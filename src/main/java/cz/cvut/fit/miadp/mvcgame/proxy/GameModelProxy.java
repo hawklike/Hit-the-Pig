@@ -4,8 +4,11 @@ import cz.cvut.fit.miadp.mvcgame.command.AbstractGameCommand;
 import cz.cvut.fit.miadp.mvcgame.model.GameModelInterface;
 import cz.cvut.fit.miadp.mvcgame.model.coordinations.VerticalDirection;
 import cz.cvut.fit.miadp.mvcgame.model.object.GameObject;
+import cz.cvut.fit.miadp.mvcgame.model.object.bonus.AbstractBonus;
 import cz.cvut.fit.miadp.mvcgame.model.object.cannon.AbstractCannon;
 import cz.cvut.fit.miadp.mvcgame.model.object.cannon.CannonConfiguration;
+import cz.cvut.fit.miadp.mvcgame.model.object.enemy.AbstractEnemy;
+import cz.cvut.fit.miadp.mvcgame.model.object.missile.AbstractMissile;
 import cz.cvut.fit.miadp.mvcgame.observer.GUIObserver;
 
 import java.util.List;
@@ -96,4 +99,25 @@ public class GameModelProxy implements GameModelInterface {
     public void undoLastCommand() {
         subject.undoLastCommand();
     }
+
+    @Override
+    public AbstractCannon getCannon() {
+        return subject.getCannon();
+    }
+
+    @Override
+    public List<AbstractMissile> getMissiles() {
+        return subject.getMissiles();
+    }
+
+    @Override
+    public List<AbstractBonus> getBonuses() {
+        return subject.getBonuses();
+    }
+
+    @Override
+    public List<AbstractEnemy> getEnemies() {
+        return subject.getEnemies();
+    }
+
 }

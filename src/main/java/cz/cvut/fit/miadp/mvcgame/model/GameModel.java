@@ -120,6 +120,7 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
         if(ticks - upgradeCannon > 400) {
             upgradeCannon = ticks;
             cannonState.upgrade();
+            notifyObservers();
         }
     }
 
@@ -250,6 +251,7 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
             if(randomizer.flipCoin()) objectFactory = new AdvancedGameObjectFactory();
             else objectFactory = new BasicGameObjectFactory();
         }
+        enemies.add(objectFactory.createEnemy());
     }
 
     private void handleMissiles() {
@@ -300,5 +302,21 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
             command.doExecute();
             executedCommands.push(command);
         }
+    }
+
+    public AbstractCannon getCannon() {
+        return cannon;
+    }
+
+    public List<AbstractMissile> getMissiles() {
+        return missiles;
+    }
+
+    public List<AbstractBonus> getBonuses() {
+        return bonuses;
+    }
+
+    public List<AbstractEnemy> getEnemies() {
+        return enemies;
     }
 }

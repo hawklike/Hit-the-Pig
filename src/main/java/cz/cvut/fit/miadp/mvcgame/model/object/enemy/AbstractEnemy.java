@@ -52,4 +52,7 @@ public abstract class AbstractEnemy extends GameObject {
         return lives / (double) maxLives;
     }
 
+    public int getLives() {
+        return lives;
+    }
 }
