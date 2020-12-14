@@ -4,9 +4,10 @@ import cz.cvut.fit.miadp.mvcgame.MvcGame;
 import cz.cvut.fit.miadp.mvcgame.abstract_factory.AbstractGameObjectFactory;
 import cz.cvut.fit.miadp.mvcgame.abstract_factory.AdvancedGameObjectFactory;
 import cz.cvut.fit.miadp.mvcgame.abstract_factory.BasicGameObjectFactory;
+import cz.cvut.fit.miadp.mvcgame.command.AbstractGameCommand;
 import cz.cvut.fit.miadp.mvcgame.config.MvcGameConfig;
 import cz.cvut.fit.miadp.mvcgame.factory.BonusFactory;
-import cz.cvut.fit.miadp.mvcgame.model.coordinations.CannonDirection;
+import cz.cvut.fit.miadp.mvcgame.model.coordinations.VerticalDirection;
 import cz.cvut.fit.miadp.mvcgame.model.object.GameObject;
 import cz.cvut.fit.miadp.mvcgame.model.object.bonus.AbstractBonus;
 import cz.cvut.fit.miadp.mvcgame.model.object.bonus.Cake;
@@ -24,10 +25,8 @@ import cz.cvut.fit.miadp.mvcgame.util.Randomizer;
 import cz.cvut.fit.miadp.mvcgame.util.SoundPlayer;
 import cz.cvut.fit.miadp.mvcgame.util.Timer;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class GameModel implements GUIObservable, CannonObserver, GameModelInterface {
     private AbstractCannon cannon;
@@ -40,6 +39,9 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
     private BonusFactory bonusFactory;
 
     private CannonStateHolder cannonState;
+
+    private Queue<AbstractGameCommand> unexecutedCommands;
+    private Stack<AbstractGameCommand> executedCommands;
 
     private Randomizer randomizer;
 
@@ -55,6 +57,8 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
 
 
     public GameModel() {
+        unexecutedCommands = new LinkedBlockingQueue<>();
+        executedCommands = new Stack<>();
         randomizer = new Randomizer();
         missiles = new ArrayList<>();
         objectFactory = new BasicGameObjectFactory();
@@ -66,39 +70,39 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
         enemies = new ArrayList<>(Arrays.asList(objectFactory.createEnemy(), objectFactory.createEnemy()));
     }
 
-    public void moveCannon(CannonDirection direction) {
+    public void moveCannon(VerticalDirection direction) {
         switch(direction) {
             case UP:
-                cannon.move(CannonDirection.UP);
+                cannon.move(VerticalDirection.UP);
                 break;
             case DOWN:
-                cannon.move(CannonDirection.DOWN);
+                cannon.move(VerticalDirection.DOWN);
                 break;
         }
         notifyObservers();
     }
 
-    public void aimCannon(CannonDirection direction) {
+    public void aimCannon(VerticalDirection direction) {
         Log.print("angle: " + cannon.getAngle());
         switch(direction) {
             case UP:
-                cannon.aim(CannonDirection.UP);
+                cannon.aim(VerticalDirection.UP);
                 break;
             case DOWN:
-                cannon.aim(CannonDirection.DOWN);
+                cannon.aim(VerticalDirection.DOWN);
                 break;
         }
         notifyObservers();
     }
 
-    public void powerCannon(CannonDirection direction) {
+    public void powerCannon(VerticalDirection direction) {
         Log.print("power: " + cannon.getPower());
         switch(direction) {
             case UP:
-                cannon.power(CannonDirection.UP);
+                cannon.power(VerticalDirection.UP);
                 break;
             case DOWN:
-                cannon.power(CannonDirection.DOWN);
+                cannon.power(VerticalDirection.DOWN);
                 break;
         }
         notifyObservers();
@@ -142,6 +146,7 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
 
     public void update() {
         ticks++;
+        executeCommands();
         handleMissiles();
         handleBonuses();
         handleEnemies();
@@ -269,5 +274,27 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
     @Override
     public void updateCannon(AbstractCannon cannon) {
         this.cannon = cannon;
+    }
+
+    @Override
+    public void registerCommand(AbstractGameCommand command) {
+        unexecutedCommands.add(command);
+    }
+
+    @Override
+    public void undoLastCommand() {
+        if(!executedCommands.isEmpty()) {
+            AbstractGameCommand lastCommand = executedCommands.pop();
+            lastCommand.unExecute();
+            notifyObservers();
+        }
+    }
+
+    private void executeCommands() {
+        while(!unexecutedCommands.isEmpty()) {
+            AbstractGameCommand command = unexecutedCommands.poll();
+            command.doExecute();
+            executedCommands.push(command);
+        }
     }
 }

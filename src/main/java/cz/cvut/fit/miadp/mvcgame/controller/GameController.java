@@ -1,7 +1,8 @@
 package cz.cvut.fit.miadp.mvcgame.controller;
 
+import cz.cvut.fit.miadp.mvcgame.command.*;
 import cz.cvut.fit.miadp.mvcgame.model.GameModelInterface;
-import cz.cvut.fit.miadp.mvcgame.model.coordinations.CannonDirection;
+import cz.cvut.fit.miadp.mvcgame.model.coordinations.VerticalDirection;
 import javafx.scene.input.KeyCode;
 
 import java.util.List;
@@ -18,28 +19,28 @@ public class GameController {
         for(KeyCode code : pressedKeysCodes) {
             switch(code) {
                 case UP:
-                    model.moveCannon(CannonDirection.UP);
+                    model.registerCommand(new MoveCannonCommand(model, VerticalDirection.UP));
                     break;
                 case DOWN:
-                    model.moveCannon(CannonDirection.DOWN);
+                    model.registerCommand(new MoveCannonCommand(model, VerticalDirection.DOWN));
                     break;
                 case SPACE:
-                    model.createMissile();
+                    model.registerCommand(new CreateMissileCommand(model));
                     break;
                 case A:
-                    model.powerCannon(CannonDirection.UP);
+                    model.registerCommand(new PowerCannonCommand(model, VerticalDirection.UP));
                     break;
                 case S:
-                    model.powerCannon(CannonDirection.DOWN);
+                    model.registerCommand(new PowerCannonCommand(model, VerticalDirection.DOWN));
                     break;
                 case Q:
-                    model.aimCannon(CannonDirection.UP);
+                    model.registerCommand(new AimCannonCommand(model, VerticalDirection.UP));
                     break;
                 case W:
-                    model.aimCannon(CannonDirection.DOWN);
+                    model.registerCommand(new AimCannonCommand(model, VerticalDirection.DOWN));
                     break;
                 case P:
-                    model.upgradeCannon();
+                    model.registerCommand(new UpgradeCannonCommand(model));
                     break;
                 case F:
                     return lives == 0;

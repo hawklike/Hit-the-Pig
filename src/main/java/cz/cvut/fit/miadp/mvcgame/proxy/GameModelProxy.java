@@ -1,7 +1,8 @@
 package cz.cvut.fit.miadp.mvcgame.proxy;
 
+import cz.cvut.fit.miadp.mvcgame.command.AbstractGameCommand;
 import cz.cvut.fit.miadp.mvcgame.model.GameModelInterface;
-import cz.cvut.fit.miadp.mvcgame.model.coordinations.CannonDirection;
+import cz.cvut.fit.miadp.mvcgame.model.coordinations.VerticalDirection;
 import cz.cvut.fit.miadp.mvcgame.model.object.GameObject;
 import cz.cvut.fit.miadp.mvcgame.model.object.cannon.AbstractCannon;
 import cz.cvut.fit.miadp.mvcgame.model.object.cannon.CannonConfiguration;
@@ -17,17 +18,17 @@ public class GameModelProxy implements GameModelInterface {
     }
 
     @Override
-    public void moveCannon(CannonDirection direction) {
+    public void moveCannon(VerticalDirection direction) {
         subject.moveCannon(direction);
     }
 
     @Override
-    public void aimCannon(CannonDirection direction) {
+    public void aimCannon(VerticalDirection direction) {
         subject.aimCannon(direction);
     }
 
     @Override
-    public void powerCannon(CannonDirection direction) {
+    public void powerCannon(VerticalDirection direction) {
         subject.powerCannon(direction);
     }
 
@@ -84,5 +85,15 @@ public class GameModelProxy implements GameModelInterface {
     @Override
     public void updateCannon(AbstractCannon cannon) {
         subject.updateCannon(cannon);
+    }
+
+    @Override
+    public void registerCommand(AbstractGameCommand command) {
+        subject.registerCommand(command);
+    }
+
+    @Override
+    public void undoLastCommand() {
+        subject.undoLastCommand();
     }
 }

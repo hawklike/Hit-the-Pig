@@ -1,5 +1,5 @@
 package cz.cvut.fit.miadp.mvcgame.model.coordinations;
 
-public enum CannonDirection {
+public enum VerticalDirection {
     UP, DOWN
 }

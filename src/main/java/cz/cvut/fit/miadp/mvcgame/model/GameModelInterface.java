@@ -1,6 +1,7 @@
 package cz.cvut.fit.miadp.mvcgame.model;
 
-import cz.cvut.fit.miadp.mvcgame.model.coordinations.CannonDirection;
+import cz.cvut.fit.miadp.mvcgame.command.AbstractGameCommand;
+import cz.cvut.fit.miadp.mvcgame.model.coordinations.VerticalDirection;
 import cz.cvut.fit.miadp.mvcgame.model.object.GameObject;
 import cz.cvut.fit.miadp.mvcgame.model.object.cannon.AbstractCannon;
 import cz.cvut.fit.miadp.mvcgame.model.object.cannon.CannonConfiguration;
@@ -9,11 +10,11 @@ import cz.cvut.fit.miadp.mvcgame.observer.GUIObserver;
 import java.util.List;
 
 public interface GameModelInterface {
-    void moveCannon(CannonDirection direction);
+    void moveCannon(VerticalDirection direction);
 
-    void aimCannon(CannonDirection direction);
+    void aimCannon(VerticalDirection direction);
 
-    void powerCannon(CannonDirection direction);
+    void powerCannon(VerticalDirection direction);
 
     void createMissile();
 
@@ -36,4 +37,8 @@ public interface GameModelInterface {
     void notifyObservers();
 
     void updateCannon(AbstractCannon cannon);
+
+    void registerCommand(AbstractGameCommand command);
+
+    void undoLastCommand();
 }

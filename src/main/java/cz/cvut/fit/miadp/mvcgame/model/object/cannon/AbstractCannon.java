@@ -1,9 +1,9 @@
 package cz.cvut.fit.miadp.mvcgame.model.object.cannon;
 
 import cz.cvut.fit.miadp.mvcgame.config.MvcGameConfig;
-import cz.cvut.fit.miadp.mvcgame.model.coordinations.CannonDirection;
 import cz.cvut.fit.miadp.mvcgame.model.coordinations.Position;
 import cz.cvut.fit.miadp.mvcgame.model.coordinations.Vector;
+import cz.cvut.fit.miadp.mvcgame.model.coordinations.VerticalDirection;
 import cz.cvut.fit.miadp.mvcgame.model.object.GameObject;
 import cz.cvut.fit.miadp.mvcgame.model.object.missile.AbstractMissile;
 import cz.cvut.fit.miadp.mvcgame.model.object.missile.Missile;
@@ -48,7 +48,7 @@ public abstract class AbstractCannon extends GameObject implements CannonState {
     }
 
 
-    public void move(CannonDirection direction) {
+    public void move(VerticalDirection direction) {
         switch(direction) {
             case UP:
                 if(position.getY() < MvcGameConfig.HORIZON_POSY) break;
@@ -61,7 +61,7 @@ public abstract class AbstractCannon extends GameObject implements CannonState {
         }
     }
 
-    public void aim(CannonDirection direction) {
+    public void aim(VerticalDirection direction) {
         switch(direction) {
             case UP:
                 if(angle + MvcGameConfig.CANNON_ANGLE_STEP > MvcGameConfig.CANNON_MAX_ANGLE) break;
@@ -75,7 +75,7 @@ public abstract class AbstractCannon extends GameObject implements CannonState {
     }
 
 
-    public void power(CannonDirection direction) {
+    public void power(VerticalDirection direction) {
         if(powerTimer == null || powerTimer.getTime(Timer.Unit.MILLIS) > MvcGameConfig.CANNON_POWER_DELAY_MILLIS) {
             powerTimer = new Timer();
             switch(direction) {
