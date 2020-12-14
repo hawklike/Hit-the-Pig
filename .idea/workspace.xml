@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dbfea076-42bd-427f-8e6e-e9c8b99bcd0d" name="Default Changelist" comment="" />
+    <list default="true" id="dbfea076-42bd-427f-8e6e-e9c8b99bcd0d" name="Default Changelist" comment="Update .gitignore">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/model/Vector.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/model/object/Cannon.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/model/object/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/config/MvcGameConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/config/MvcGameConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/controller/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/model/GameModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/model/GameModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/model/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/model/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/view/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/view/GameView.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,21 +31,43 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/MvcGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="27" column="54" selection-start-line="27" selection-start-column="54" selection-end-line="27" selection-end-column="54" />
+            <state relative-caret-position="459">
+              <caret line="33" column="16" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
               <folding>
-                <element signature="e#373#374#0" expanded="true" />
-                <element signature="e#469#470#0" expanded="true" />
+                <element signature="e#752#753#0" expanded="true" />
+                <element signature="e#799#800#0" expanded="true" />
+                <element signature="e#918#919#0" expanded="true" />
+                <element signature="e#937#938#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/MvcGameJavaFxLauncher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+            <state relative-caret-position="628">
+              <caret line="66" column="30" lean-forward="true" selection-start-line="66" selection-start-column="30" selection-end-line="66" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/model/object/GameObject.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#271#272#0" expanded="true" />
+                <element signature="e#290#291#0" expanded="true" />
+                <element signature="e#355#356#0" expanded="true" />
+                <element signature="e#389#390#0" expanded="true" />
+                <element signature="e#246#247#0" expanded="true" />
+                <element signature="e#272#273#0" expanded="true" />
+                <element signature="e#314#315#0" expanded="true" />
+                <element signature="e#345#346#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -43,17 +75,80 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/config/MvcGameConfig.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            <state relative-caret-position="119">
+              <caret line="7" column="73" selection-start-line="7" selection-start-column="73" selection-end-line="7" selection-end-column="73" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/model/object/Cannon.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1734">
-              <caret line="102" column="45" selection-start-line="102" selection-start-column="45" selection-end-line="102" selection-end-column="45" />
+            <state relative-caret-position="510">
+              <caret line="30" column="9" lean-forward="true" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#313#314#0" expanded="true" />
+                <element signature="e#397#398#0" expanded="true" />
+                <element signature="e#404#437#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/model/Vector.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="30" selection-start-line="30" selection-end-line="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/model/GameModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="578">
+              <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#228#229#0" expanded="true" />
+                <element signature="e#265#266#0" expanded="true" />
+                <element signature="e#308#309#0" expanded="true" />
+                <element signature="e#338#339#0" expanded="true" />
+                <element signature="e#775#776#0" expanded="true" />
+                <element signature="e#804#805#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/view/GameView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#157#158#0" expanded="true" />
+                <element signature="e#184#185#0" expanded="true" />
+                <element signature="e#620#621#0" expanded="true" />
+                <element signature="e#669#670#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/controller/GameController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="310">
+              <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#148#149#0" expanded="true" />
+                <element signature="e#182#183#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -61,23 +156,51 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/model/Position.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="34" column="1" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
+            <state relative-caret-position="272">
+              <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/MvcGameJavaFxLauncher.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/MvcGame.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/GameView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/GameController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/GameModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/MvcGameJavaFxLauncher.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/model/Direction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/controller/GameController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/model/Vector.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/model/entity/GameObject.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/model/Position.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/model/entity/Cannon.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/model/object/GameObject.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/config/MvcGameConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/model/object/Cannon.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/model/GameModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/view/GameView.java" />
       </list>
     </option>
   </component>
@@ -147,13 +270,48 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
-      <flattenPackages ProjectPane="true" />
+      <flattenPackages PackagesPane="false" ProjectPane="true" />
       <hideEmptyPackages ProjectPane="true" />
       <abbreviatePackageNames ProjectPane="false" />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="mvcgame" type="58d84e3e:PackageViewProjectNode" />
+              <item name="mvcgame" type="616d4139:PackageViewModuleNode" />
+            </path>
+            <path>
+              <item name="mvcgame" type="58d84e3e:PackageViewProjectNode" />
+              <item name="mvcgame" type="616d4139:PackageViewModuleNode" />
+              <item name="cz.cvut.fit.miadp" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="mvcgame" type="58d84e3e:PackageViewProjectNode" />
+              <item name="mvcgame" type="616d4139:PackageViewModuleNode" />
+              <item name="cz.cvut.fit.miadp" type="1f31426a:PackageElementNode" />
+              <item name="mvcgame" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="mvcgame" type="58d84e3e:PackageViewProjectNode" />
+              <item name="mvcgame" type="616d4139:PackageViewModuleNode" />
+              <item name="cz.cvut.fit.miadp" type="1f31426a:PackageElementNode" />
+              <item name="mvcgame" type="1f31426a:PackageElementNode" />
+              <item name="config" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="mvcgame" type="58d84e3e:PackageViewProjectNode" />
+              <item name="mvcgame" type="616d4139:PackageViewModuleNode" />
+              <item name="cz.cvut.fit.miadp" type="1f31426a:PackageElementNode" />
+              <item name="mvcgame" type="1f31426a:PackageElementNode" />
+              <item name="model" type="1f31426a:PackageElementNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -194,6 +352,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="miadp" type="462c0819:PsiDirectoryNode" />
               <item name="mvcgame" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -202,6 +361,8 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="miadp" type="462c0819:PsiDirectoryNode" />
+              <item name="mvcgame" type="462c0819:PsiDirectoryNode" />
               <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -210,7 +371,63 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="miadp" type="462c0819:PsiDirectoryNode" />
+              <item name="mvcgame" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mvcgame" type="b2602c69:ProjectViewProjectNode" />
+              <item name="adp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="miadp" type="462c0819:PsiDirectoryNode" />
+              <item name="mvcgame" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mvcgame" type="b2602c69:ProjectViewProjectNode" />
+              <item name="adp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="miadp" type="462c0819:PsiDirectoryNode" />
+              <item name="mvcgame" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="object" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mvcgame" type="b2602c69:ProjectViewProjectNode" />
+              <item name="adp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="miadp" type="462c0819:PsiDirectoryNode" />
+              <item name="mvcgame" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mvcgame" type="b2602c69:ProjectViewProjectNode" />
+              <item name="adp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mvcgame" type="b2602c69:ProjectViewProjectNode" />
+              <item name="adp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="icons" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mvcgame" type="b2602c69:ProjectViewProjectNode" />
+              <item name="adp" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -219,13 +436,21 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="add_unversioned_files" value="$PROJECT_DIR$/.idea/workspace.xml" />
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="cz.cvut.fit.miadp.mvcgame" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -284,15 +509,31 @@
       <workItem from="1602170646944" duration="4663000" />
       <workItem from="1607415868223" duration="801000" />
     </task>
+    <task id="LOCAL-00001" summary="Update .gitignore">
+      <created>1607417122283</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1607417122283</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Refactor code to MVC pattern">
+      <created>1607422122152</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1607422122152</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7384000" />
+    <option name="totallyTimeSpent" value="13537000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="1196" width="1922" height="1022" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49891305" visible="true" weight="0.25506938" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49891305" visible="true" weight="0.25506938" />
       <window_info id="Favorites" order="1" sideWeight="0.50108695" side_tool="true" weight="0.2524013" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="3" />
@@ -301,7 +542,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32884616" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3278867" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -309,9 +550,9 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32135075" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32135075" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.32934782" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32897604" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -326,6 +567,13 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Update .gitignore" />
+    <MESSAGE value="Refactor code to MVC pattern" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor code to MVC pattern" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
   <component name="editorHistoryManager">
     <entry file="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-base/13/javafx-base-13-linux.jar!/javafx/event/EventHandler.class">
       <provider selected="true" editor-type-id="text-editor">
@@ -334,42 +582,159 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/icons/fit-icon-32x32.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/icons/fit-icon-256x256.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/images/enemy1.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/images/enemy2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/images/missile.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/images/cannon.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/images/collision.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="832">
+          <caret line="102" column="45" selection-start-line="102" selection-start-column="45" selection-end-line="102" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/model/Direction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/model/Vector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/model/Position.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/controller/GameController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#148#149#0" expanded="true" />
+            <element signature="e#182#183#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/MvcGameJavaFxLauncher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="628">
+          <caret line="66" column="30" lean-forward="true" selection-start-line="66" selection-start-column="30" selection-end-line="66" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/MvcGame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="27" column="54" selection-start-line="27" selection-start-column="54" selection-end-line="27" selection-end-column="54" />
+        <state relative-caret-position="459">
+          <caret line="33" column="16" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
           <folding>
-            <element signature="e#373#374#0" expanded="true" />
-            <element signature="e#469#470#0" expanded="true" />
+            <element signature="e#752#753#0" expanded="true" />
+            <element signature="e#799#800#0" expanded="true" />
+            <element signature="e#918#919#0" expanded="true" />
+            <element signature="e#937#938#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/model/object/GameObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#271#272#0" expanded="true" />
+            <element signature="e#290#291#0" expanded="true" />
+            <element signature="e#355#356#0" expanded="true" />
+            <element signature="e#389#390#0" expanded="true" />
+            <element signature="e#246#247#0" expanded="true" />
+            <element signature="e#272#273#0" expanded="true" />
+            <element signature="e#314#315#0" expanded="true" />
+            <element signature="e#345#346#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/config/MvcGameConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        <state relative-caret-position="119">
+          <caret line="7" column="73" selection-start-line="7" selection-start-column="73" selection-end-line="7" selection-end-column="73" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/model/object/Cannon.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1734">
-          <caret line="102" column="45" selection-start-line="102" selection-start-column="45" selection-end-line="102" selection-end-column="45" />
+        <state relative-caret-position="510">
+          <caret line="30" column="9" lean-forward="true" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#313#314#0" expanded="true" />
+            <element signature="e#397#398#0" expanded="true" />
+            <element signature="e#404#437#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/model/Position.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/model/GameModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="34" column="1" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
+        <state relative-caret-position="578">
+          <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#228#229#0" expanded="true" />
+            <element signature="e#265#266#0" expanded="true" />
+            <element signature="e#308#309#0" expanded="true" />
+            <element signature="e#338#339#0" expanded="true" />
+            <element signature="e#775#776#0" expanded="true" />
+            <element signature="e#804#805#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/MvcGameJavaFxLauncher.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cz/cvut/fit/miadp/mvcgame/view/GameView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+        <state relative-caret-position="493">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#157#158#0" expanded="true" />
+            <element signature="e#184#185#0" expanded="true" />
+            <element signature="e#620#621#0" expanded="true" />
+            <element signature="e#669#670#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
