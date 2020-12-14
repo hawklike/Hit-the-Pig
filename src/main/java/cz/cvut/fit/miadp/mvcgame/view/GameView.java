@@ -7,6 +7,7 @@ import cz.cvut.fit.miadp.mvcgame.model.GameModelInterface;
 import cz.cvut.fit.miadp.mvcgame.model.coordinations.Position;
 import cz.cvut.fit.miadp.mvcgame.model.object.cannon.CannonConfiguration;
 import cz.cvut.fit.miadp.mvcgame.observer.GUIObserver;
+import cz.cvut.fit.miadp.mvcgame.util.SoundPlayer;
 import cz.cvut.fit.miadp.mvcgame.visitor.GameObjectRenderer;
 
 import java.text.DecimalFormat;
@@ -66,6 +67,7 @@ public class GameView implements GUIObserver {
     }
 
     private void gameOver() {
+        new SoundPlayer().play(MvcGameConfig.GAMEOVER_SOUND_RESOURCE);
         gr.drawText("Game Over", new Position(MvcGameConfig.MAX_X / 2 - 32, 72));
         gr.drawText("Press F to play again.", new Position(MvcGameConfig.MAX_X / 2 - 64, 96));
     }

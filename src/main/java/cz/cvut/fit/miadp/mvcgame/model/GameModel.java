@@ -21,6 +21,7 @@ import cz.cvut.fit.miadp.mvcgame.observer.GUIObserver;
 import cz.cvut.fit.miadp.mvcgame.state.CannonStateHolder;
 import cz.cvut.fit.miadp.mvcgame.util.Log;
 import cz.cvut.fit.miadp.mvcgame.util.Randomizer;
+import cz.cvut.fit.miadp.mvcgame.util.SoundPlayer;
 import cz.cvut.fit.miadp.mvcgame.util.Timer;
 
 import java.util.ArrayList;
@@ -173,8 +174,14 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
         while(iter.hasNext()) {
             AbstractBonus bonus = iter.next();
             if(missile.collidesWith(bonus)) {
-                if(bonus instanceof Cake) cannonState.upgrade();
-                else if(bonus instanceof ExtraLife) lives++;
+                SoundPlayer player = new SoundPlayer();
+                if(bonus instanceof Cake) {
+                    cannonState.upgrade();
+                    player.play(MvcGameConfig.CAKE_SOUND_RESOURCE);
+                } else if(bonus instanceof ExtraLife) {
+                    lives++;
+                    player.play(MvcGameConfig.LIFE_SOUND_RESOURCE);
+                }
                 iter.remove();
             }
         }
@@ -203,6 +210,7 @@ public class GameModel implements GUIObservable, CannonObserver, GameModelInterf
         enemies.removeIf(enemy -> {
             if(enemy.getPosition().getX() < -enemy.getWidth()) {
                 lives--;
+                new SoundPlayer().play(MvcGameConfig.LIFE_DOWN_SOUND_RESOURCE);
                 return true;
             } else return false;
         });

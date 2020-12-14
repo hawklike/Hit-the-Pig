@@ -9,6 +9,7 @@ import cz.cvut.fit.miadp.mvcgame.model.object.missile.AbstractMissile;
 import cz.cvut.fit.miadp.mvcgame.model.object.missile.Missile;
 import cz.cvut.fit.miadp.mvcgame.state.CannonState;
 import cz.cvut.fit.miadp.mvcgame.strategy.MovingStrategy;
+import cz.cvut.fit.miadp.mvcgame.util.SoundPlayer;
 import cz.cvut.fit.miadp.mvcgame.util.Timer;
 
 @SuppressWarnings("WeakerAccess")
@@ -93,6 +94,7 @@ public abstract class AbstractCannon extends GameObject implements CannonState {
     public AbstractMissile shoot() {
         if(shootTimer == null || shootTimer.getTime(Timer.Unit.MILLIS) > delayBetweenShots) {
             shootTimer = new Timer();
+            new SoundPlayer().play(MvcGameConfig.CANNON_SOUND_RESOURCE);
 
             return Missile.createInstance(getPosition(),
                     angle,

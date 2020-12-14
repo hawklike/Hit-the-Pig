@@ -11,6 +11,8 @@ public class MvcGameConfig {
 
     public static final int HORIZON_POSY = 38;
 
+    public static final String LIFE_DOWN_SOUND_RESOURCE = "/sound/life.m4a";
+    public static final String GAMEOVER_SOUND_RESOURCE = "/sound/gameover.m4a";
     public static final int LIVES = 5;
 
     public static final int HARDER_DIFFICULTY_LIVES_BOUND = 7;
@@ -20,6 +22,7 @@ public class MvcGameConfig {
     public static final int ULTRA_HARD_DIFFICULTY_DESTROYED_ENEMIES_BOUND = 100;
 
     public static final String CANNON_IMG_RESOURCE = "images/new/cannon.png";
+    public static final String CANNON_SOUND_RESOURCE = "/sound/cannon.m4a";
     public static final double CANNON_POWER_DELAY_MILLIS = 500;
     public static final int CANNON_POWER_STEP = 1;
     public static final double CANNON_ANGLE_STEP = Math.PI / 18;
@@ -42,7 +45,9 @@ public class MvcGameConfig {
     public static final String MISSILE2_IMG_RESOURCE = "images/new/missile2.png";
 
     public static final String CAKE_IMG_RESOURCE = "images/cake.png";
+    public static final String CAKE_SOUND_RESOURCE = "/sound/bonus.m4a";
     public static final String LIFE_IMG_RESOURCE = "images/life.png";
+    public static final String LIFE_SOUND_RESOURCE = "/sound/bonus2.m4a";
     public static final int BONUS_RESPAWN_TICKS = 1000;
     public static final int BONUS_LIFETIME_MILLIS = 5000;
 
@@ -54,10 +59,12 @@ public class MvcGameConfig {
     public static final int MIN_STEPS_BETWEEN_ENEMIES = 200;
 
     public static final String BASIC_ENEMY_IMG_RESOURCE = "/images/new/enemy1.png";
+    public static final String ENEMY1_SOUND_RESOURCE = "/sound/enemy1.m4a";
     public static final int BASIC_ENEMY_MAX_LIVES = 30;
     public static final int BASIC_ENEMY_SPEED = 1;
 
     public static final String ADVANCED_ENEMY_IMG_RESOURCE = "/images/new/enemy2.png";
+    public static final String ENEMY2_SOUND_RESOURCE = "/sound/enemy2.m4a";
     public static final int ADVANCED_ENEMY_MAX_LIVES = 60;
     public static final int ADVANCED_ENEMY_SPEED = 2;
 
